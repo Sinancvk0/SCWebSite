@@ -9,6 +9,6 @@ namespace SC.Models
     public class Skılls:BaseModel
     {
 
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }
