@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SC.DataLayer;
+
 namespace SCPersonalProject
 {
     public class Program
@@ -8,6 +11,8 @@ namespace SCPersonalProject
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
