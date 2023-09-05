@@ -3,11 +3,12 @@ using SC.Models;
 
 namespace SC.DataLayer
 {
-    public class Context : DbContext
+    public class AppDbContext : DbContext
     {
 
-        public Context(DbContextOptions<Context> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Service> Services { get; set; }
