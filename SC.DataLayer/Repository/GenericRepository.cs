@@ -1,4 +1,5 @@
-﻿using SC.DataLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using SC.DataLayer.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace SC.DataLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        private readonly Context _db;
+        private readonly AppDbContext _db;
 
-        public GenericRepository(Context db)
+        public GenericRepository(AppDbContext db)
         {
             _db = db;
         }
