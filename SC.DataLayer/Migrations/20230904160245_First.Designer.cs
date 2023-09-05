@@ -11,7 +11,7 @@ using SC.DataLayer;
 
 namespace SC.DataLayer.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20230904160245_First")]
     partial class First
     {
