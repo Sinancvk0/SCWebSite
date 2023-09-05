@@ -20,12 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
+    <ProjectReference Include="..\SC.DataLayer\SC.DataLayer.csproj" />
+    <ProjectReference Include="..\SC.Models\SC.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SC.DataLayer\SC.DataLayer.csproj" />
-    <ProjectReference Include="..\SC.Models\SC.Models.csproj" />
+    <Folder Include="ValidationRules\" />
   </ItemGroup>
 
 </Project>
