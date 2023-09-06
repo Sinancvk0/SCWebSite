@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SC.Bussines.Container;
 using SC.Bussines.Content;
 using SC.Bussines.Services;
 using SC.DataLayer;
@@ -14,18 +15,15 @@ namespace SCPersonalProject
         {
       
             var builder = WebApplication.CreateBuilder(args);
+
+
        
             // Add services to the container.
             builder.Services.AddControllersWithViews();
          
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-            builder.Services.AddScoped<IAboutService, AboutManager>();
-            builder.Services.AddScoped<IAboutDal, EfAboutDal>();
-
-            builder.Services.AddScoped<IServiceService, ServiceManager>();
-            builder.Services.AddScoped<IServiceDal, EfServiceDal>();
+            ExtensionsDb.ContainerDependencies(builder.Services);
 
             var app = builder.Build();
            
@@ -42,7 +40,7 @@ namespace SCPersonalProject
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Default}/{action=Index}/{id?}");
 
             app.Run();
         }
