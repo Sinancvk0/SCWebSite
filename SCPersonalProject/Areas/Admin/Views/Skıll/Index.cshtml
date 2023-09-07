@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card-header border-0">
+    <h3 class="mb-0">Light table</h3>
+</div>
+<div class="table-responsive">
+    <button id="addSkillBtn" class="btn btn-success mb-3">Ekle</button>
+    <table id="skillsTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- AJAX isteği sonucunda doldurulacak alan -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Verileri çekmek için ayrı bir fonksiyon oluşturabilirsiniz
+        function fetchSkills() {
+            $.ajax({
+                url: '/Admin/Skıll/GetList', // AJAX isteği göndermek istediğiniz URL
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var tableBody = $('#skillsTable tbody');
+                    tableBody.empty();
+
+                    for (var i = 0; i < data.length; i++) {
+                        var skill = data[i];
+                        var row = '<tr>' +
+                            '<td>' + (i + 1) + '</td>' +
+                            '<td>' + skill.name + '</td>' +
+                            '<td>' + skill.value + '</td>' +
+                            '<td>' + '<button class="btn btn-danger btn-sm deleteSkillBtn" data-skill-id="' + skill.id + '">Sil</button>' + '</td>' +
+                            '<td>' + '<button class="btn btn-warning btn-sm updateSkillBtn" data-skill-id="' + skill.id + '">Güncelle</button>' + '</td>' +
+                            '</tr>';
+                        tableBody.append(row);
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Sayfa yüklendiğinde verileri çekmek için çağırın
+        fetchSkills();
+
+        // Ekleme butonuna tıklamada yeni bir beceri eklemek için bir işlev ekleyin
+        $('#addSkillBtn').click(function () {
+            // Ekleme işlemi için uygun bir kod ekleyin
+            // Örneğin, bir modal pencere göstererek yeni beceri eklemeyi gerçekleştirebilirsiniz.
+        });
+
+        // Silme ve güncelleme düğmelerine tıklamada ilgili işlemleri gerçekleştirecek kodları ekleyin
+        $('#skillsTable').on('click', '.deleteSkillBtn', function () {
+            var skillId = $(this).data('skill-id');
+            // Silme işlemi için uygun bir kod ekleyin
+        });
+
+        $('#skillsTable').on('click', '.updateSkillBtn', function () {
+            var skillId = $(this).data('skill-id');
+            // Güncelleme işlemi için uygun bir kod ekleyin
+        });
+    });
+
+</script>
