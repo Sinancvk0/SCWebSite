@@ -1,11 +1,6 @@
 ﻿using SC.Bussines.Services;
 using SC.DataLayer.Abstract;
 using SC.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SC.Bussines.Content
 {
@@ -20,27 +15,27 @@ namespace SC.Bussines.Content
 
         public void TAdd(Skılls t)
         {
-            throw new NotImplementedException();
+          _skıllsDal.Insert(t);
         }
 
         public void TDelete(Skılls t)
         {
-            throw new NotImplementedException();
+            _skıllsDal.Delete(t);
         }
 
         public Skılls TGetById(int id)
         {
-            throw new NotImplementedException();
+         return _skıllsDal.GetById(id);
         }
 
         public List<Skılls> TGetList()
         {
-            throw new NotImplementedException();
+           return _skıllsDal.GetList();
         }
 
         public void TUpdate(Skılls t)
         {
-            throw new NotImplementedException();
+           _skıllsDal.Update(t);    
         }
     }
 }

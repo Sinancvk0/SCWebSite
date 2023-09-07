@@ -1,0 +1,41 @@
+﻿
+
+<div class="title-box-2">
+    <h5 class="title-left">
+        Send Message Us
+    </h5>
+</div>
+<div>
+    <form method="post" action="/Default/SendMessage" class="php-email-form">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="form-group">
+                    <input type="text" name="Name" class="form-control" id="name" placeholder="Adınız Soyadınız" required>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <div class="form-group">
+                    <input type="email" class="form-control" name="Mail" id="email" placeholder="Mail Adresiniz" required>
+                </div>
+            </div>
+            @*<div class="col-md-12 mb-3">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Başlık" required>
+                </div>
+            </div>*@
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control" name="Content" rows="5" placeholder="Mesaj" required></textarea>
+                </div>
+            </div>
+            <div class="col-md-12 text-center my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+            </div>
+        </div>
+    </form>
+</div>

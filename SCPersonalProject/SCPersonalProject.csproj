@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\argon\.github\workflows\main.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +28,10 @@
     <ProjectReference Include="..\SC.Bussines\SC.Bussines.csproj" />
     <ProjectReference Include="..\SC.DataLayer\SC.DataLayer.csproj" />
     <ProjectReference Include="..\SC.Models\SC.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

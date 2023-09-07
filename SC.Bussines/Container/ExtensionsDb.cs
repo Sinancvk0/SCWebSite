@@ -25,6 +25,12 @@ namespace SC.Bussines.Container
             services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<IContactDal, EfContactDal>();
 
+            services.AddScoped<IMessageService, MessageManager>();
+            services.AddScoped<IMessageDal, EfMessageDal>();
+
+            services.AddScoped<ISkıllsService, SkıllsManager>();
+            services.AddScoped<ISkıllsDal, EfSkıllsDal>();
+
 
         }
     }

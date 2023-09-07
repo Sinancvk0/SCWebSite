@@ -39,10 +39,17 @@ namespace SCPersonalProject
             app.UseAuthorization();
 
             app.MapControllerRoute(
+             name: "areas",
+             pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
+         );
+
+            app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Default}/{action=Index}/{id?}");
+                pattern: "{controller=Default}/{action=Index}/{id?}"
+            );
 
             app.Run();
+
         }
     }
 }
