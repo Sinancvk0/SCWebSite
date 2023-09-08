@@ -1,0 +1,124 @@
+//
+// Form editors.scss
+//
+
+
+// Tinymce 
+
+.tox-tinymce {
+  border: 1px solid $input-border-color !important;
+}
+
+.tox {
+  .tox-statusbar {
+    border-top: 1px solid var(--#{$variable-prefix}light) !important;
+  }
+    .tox-menubar, .tox-edit-area__iframe, .tox-statusbar{
+      background-color: var(--#{$variable-prefix}card-bg)!important;
+      background: none !important;
+    }
+    .tox-mbtn{
+      color: var(--#{$variable-prefix}gray-700) !important;
+        &:hover:not(:disabled):not(.tox-mbtn--active){
+            background-color: var(--#{$variable-prefix}light) !important;
+        }
+    }
+    .tox-tbtn{
+        &:hover{
+            background-color: var(--#{$variable-prefix}light) !important;
+        }
+    }
+
+    .tox-toolbar, .tox-toolbar__overflow, .tox-toolbar__primary{
+      background: var(--#{$variable-prefix}light) !important;
+    }
+
+    .tox-toolbar__primary{
+      border-top-color: var(--#{$variable-prefix}light) !important;
+    }
+
+    .tox-tbtn{
+      color: var(--#{$variable-prefix}gray-700)!important;
+      svg{
+        fill: var(--#{$variable-prefix}gray-700)!important;
+      }
+    }
+
+    .tox-edit-area__iframe{
+      background-color: var(--#{$variable-prefix}card-bg) !important;
+    }
+  
+    .tox-statusbar a, .tox-statusbar__path-item, .tox-statusbar__wordcount{
+      color: var(--#{$variable-prefix}gray-700) !important;
+    }
+
+    &:not([dir=rtl]) .tox-toolbar__group:not(:last-of-type) {
+      border-right: 1px solid var(--#{$variable-prefix}light) !important;
+    } 
+}
+
+
+
+// x editable
+
+.editable-input{
+  .form-control{
+    display: inline-block;
+  }
+}
+
+.editable-buttons{
+  margin-left: 7px;
+  .editable-cancel{
+    margin-left: 7px;
+  }
+}
+
+
+
+// ck-editor
+
+.ck-editor__editable {
+  min-height: 250px !important;
+}
+
+.ck{
+  &.ck-reset_all, &.ck-reset_all *{
+    color: var(--#{$variable-prefix}gray-700) !important;
+  }
+
+  &.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    border-color: $input-border-color !important;
+  }
+
+  &.ck-toolbar{
+    background-color: var(--#{$variable-prefix}light) !important;
+    border-color: $input-border-color !important;
+
+    .ck.ck-toolbar__separator{
+      background-color: $input-border-color !important;
+    }
+  }
+
+  &.ck-tooltip .ck-tooltip__text{
+    background-color: $dark !important;
+    color: $light !important;
+  }
+
+  &.ck-editor__main>.ck-editor__editable, &.ck-list{
+    background-color: var(--#{$variable-prefix}custom-white) !important;
+  }
+
+  &.ck-dropdown__panel{
+    border-color: $border-color !important;
+  }
+  
+}
+
+
+.ck.ck-button:not(.ck-disabled):hover, a.ck.ck-button:not(.ck-disabled):hover, .ck.ck-button.ck-on, a.ck.ck-button.ck-on{
+  background-color: var(--#{$variable-prefix}light) !important;
+}
+
+
+

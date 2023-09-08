@@ -1,0 +1,414 @@
+@@include("partials/main.html")
+
+    <head>
+        
+        @@include("partials/title-meta.html", {"title": "Orders"})
+
+        <!-- DataTables -->
+        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Responsive datatable examples -->
+        <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
+
+        @@include("partials/head-css.html")
+
+    </head>
+
+    @@include("partials/body.html")
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            @@include("partials/menu.html")
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        @@include("partials/page-title.html", {"pagetitle": "Ecommerce", "title": "Orders"})
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div>
+                                            
+                                    <div class="float-end">
+                                        <form class="d-inline-flex mb-3">
+                                            <label class="form-check-label my-2 me-2" for="order-selectinput">Orders</label>
+                                            <select class="form-select" id="order-selectinput">
+                                                <option selected>All</option>
+                                                <option value="1">Active</option>
+                                                <option value="2">Unpaid</option>
+                                            </select>
+                                        </form>
+                                        
+                                    </div>
+                                    <button type="button" class="btn btn-success waves-effect waves-light mb-3"><i class="mdi mdi-plus me-1"></i> Add New Order</button>
+                                </div>
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                        <thead>
+                                            <tr class="bg-transparent">
+                                                <th style="width: 20px;">
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck">
+                                                        <label class="form-check-label" for="ordercheck"></label>
+                                                    </div>
+                                                </th>
+                                                <th>Order ID</th>
+                                                <th>Date</th>
+                                                <th>Billing Name</th>
+                                                <th>Total</th>
+                                                <th>Payment Status</th>
+                                                <th style="width: 120px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck1">
+                                                        <label class="form-check-label" for="ordercheck1"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0132</a> </td>
+                                                <td>
+                                                    10 Jul, 2020
+                                                </td>
+                                                <td>Melvin Martin</td>
+                                                
+                                                <td>
+                                                    $142
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck2">
+                                                        <label class="form-check-label" for="ordercheck2"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0131</a> </td>
+                                                <td>
+                                                    09 Jul, 2020
+                                                </td>
+                                                <td>Roy Michael</td>
+                                                
+                                                <td>
+                                                    $130
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck3">
+                                                        <label class="form-check-label" for="ordercheck3"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0130</a> </td>
+                                                <td>
+                                                    08 Jul, 2020
+                                                </td>
+                                                <td>Shelby Wolf</td>
+                                                
+                                                <td>
+                                                    $123
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-warning font-size-12">unpaid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck4">
+                                                        <label class="form-check-label" for="ordercheck4"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0129</a></td>
+                                                <td>
+                                                    07 Jul, 2020
+                                                </td>
+                                                <td>James Riddick</td>
+                                                
+                                                <td>
+                                                    $173
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck5">
+                                                        <label class="form-check-label" for="ordercheck5"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0128</a></td>
+                                                <td>
+                                                    07 Jul, 2020
+                                                </td>
+                                                <td>George Kwan</td>
+                                                
+                                                <td>
+                                                    $160
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-danger font-size-12">Chargeback</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck6">
+                                                        <label class="form-check-label" for="ordercheck6"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0127</a> </td>
+                                                <td>
+                                                    06 Jul, 2020
+                                                </td>
+                                                <td>Kevin Patterson</td>
+                                                
+                                                <td>
+                                                    $165
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck7">
+                                                        <label class="form-check-label" for="ordercheck7"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0126</a> </td>
+                                                <td>
+                                                    05 Jul, 2020
+                                                </td>
+                                                <td>Danny Orr</td>
+                                                
+                                                <td>
+                                                    $161
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck8">
+                                                        <label class="form-check-label" for="ordercheck8"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0125</a> </td>
+                                                <td>
+                                                    04 Jul, 2020
+                                                </td>
+                                                <td>Sylvia Garcia</td>
+                                                
+                                                <td>
+                                                    $153
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-warning font-size-12">unpaid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck9">
+                                                        <label class="form-check-label" for="ordercheck9"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0124</a></td>
+                                                <td>
+                                                    04 Jul, 2020
+                                                </td>
+                                                <td>Charles Denney</td>
+                                                
+                                                <td>
+                                                    $152
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck10">
+                                                        <label class="form-check-label" for="ordercheck10"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0123</a> </td>
+                                                <td>
+                                                    03 Jul, 2020
+                                                </td>
+                                                <td>Lisa Farrell</td>
+                                                
+                                                <td>
+                                                    $167
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck11">
+                                                        <label class="form-check-label" for="ordercheck11"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0122</a> </td>
+                                                <td>
+                                                    02 Jul, 2020
+                                                </td>
+                                                <td>Connie Franco</td>
+                                                
+                                                <td>
+                                                    $163
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center font-size-16">
+                                                        <input type="checkbox" class="form-check-input" id="ordercheck12">
+                                                        <label class="form-check-label" for="ordercheck12"></label>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0121</a> </td>
+                                                <td>
+                                                    02 Jul, 2020
+                                                </td>
+                                                <td>Lara Casillas</td>
+                                                
+                                                <td>
+                                                    $171
+                                                </td>
+                                                <td>
+                                                    <div class="badge bg-pill bg-soft-success font-size-12">Paid</div>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                                    <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- end table -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                @@include("partials/footer.html")
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        @@include("partials/right-sidebar.html")
+
+        @@include("partials/vendor-scripts.html")
+
+        <!-- Required datatable js -->
+        <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        
+        <!-- Responsive examples -->
+        <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- init js -->
+        <script src="assets/js/pages/ecommerce-datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>

@@ -1,79 +1,187 @@
 ﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
-<div class="card-header border-0">
-    <h3 class="mb-0">Light table</h3>
+@*****************Title Başlangıç************************@
+<div>
+    <div class="card">
+        <div class="card-header  text-white bg-danger bg-gradient">
+            <span class="fs-4">Yetenek Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Yetenek Ekle</a>
+        </div>
+        <div class="card-body">
+            <table id="skillsTable" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+
+                        <th>Guid</th>
+                        <th>Yetenek Adı</th>
+                        <th>Oran</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
 </div>
-<div class="table-responsive">
-    <button id="addSkillBtn" class="btn btn-success mb-3">Ekle</button>
-    <table id="skillsTable" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Sil</th>
-                <th>Güncelle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- AJAX isteği sonucunda doldurulacak alan -->
-        </tbody>
-    </table>
+@*****************Title Bitiş************************@
+
+@*****************Modal Başlangıç************************@
+<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+     aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Yetenek Ekle </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="mb-3">
+                        <label class="form-label">Yetenek Adı</label>
+                        <input type="text" id="txtName" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Yetenek Derecesi</label>
+                        <textarea id="txtValue" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#" id="btnSave" class="btn btn-primary">Kaydet</a>
+            </div>
+        </div>
+    </div>
 </div>
+
+@**********************Modal Bitiş ***************************************@
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-
     $(document).ready(function () {
-        // Verileri çekmek için ayrı bir fonksiyon oluşturabilirsiniz
-        function fetchSkills() {
-            $.ajax({
-                url: '/Admin/Skıll/GetList', // AJAX isteği göndermek istediğiniz URL
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    var tableBody = $('#skillsTable tbody');
-                    tableBody.empty();
 
-                    for (var i = 0; i < data.length; i++) {
-                        var skill = data[i];
-                        var row = '<tr>' +
-                            '<td>' + (i + 1) + '</td>' +
-                            '<td>' + skill.name + '</td>' +
-                            '<td>' + skill.value + '</td>' +
-                            '<td>' + '<button class="btn btn-danger btn-sm deleteSkillBtn" data-skill-id="' + skill.id + '">Sil</button>' + '</td>' +
-                            '<td>' + '<button class="btn btn-warning btn-sm updateSkillBtn" data-skill-id="' + skill.id + '">Güncelle</button>' + '</td>' +
-                            '</tr>';
-                        tableBody.append(row);
+        // Ekleme alanı
+        $("#btnEkle").click(function () {
+            $("#modalTitle").text("Yetenek Ekle");
+            $("#btnSave").text("Kaydet").removeClass('btn-success').addClass('btn-primary');
+            $("#txtName").val("");
+            $("#txtValue").val("");
+            $("#modal").modal('show');
+
+            // Kaydet düğmesi tıklama olayı
+            $("#btnSave").off().click(function () {
+                let veri = {
+                    name: $("#txtName").val(),
+                    value: $("#txtValue").val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/Skıll/AddSkill',
+                    data: veri,
+                    success: function (res) {
+                        $("#modal").modal('hide');
+                        $("#txtName").val("");
+                        $("#txtValue").val("");
+                        fetchSkills(); // DataTable'ı güncelle
                     }
-                },
-                error: function (error) {
-                    console.error(error);
-                }
+                });
             });
-        }
+        });
 
-        // Sayfa yüklendiğinde verileri çekmek için çağırın
+        // DataTable'i başlatın ve sütunları belirtin
+        var dataTable = $('#skillsTable').DataTable({
+            ajax: {
+                url: '/Admin/Skıll/GetList',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' }, // Sıralı numara sütunu
+                { data: 'name' }, // İsim sütunu
+                { data: 'value' }, // Değer sütunu
+                { data: 'dateCreated' },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return ` <a href="#" onclick="deleteSkill(${row.id})" class="btn btn-sm btn-danger">Sil</a>
+                    <a href="#" onclick="editSkill(${data.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
+                    }
+                }
+            ]
+        });
+
+
         fetchSkills();
 
-        // Ekleme butonuna tıklamada yeni bir beceri eklemek için bir işlev ekleyin
-        $('#addSkillBtn').click(function () {
-            // Ekleme işlemi için uygun bir kod ekleyin
-            // Örneğin, bir modal pencere göstererek yeni beceri eklemeyi gerçekleştirebilirsiniz.
-        });
+        // DataTable güncellenmesi gerektiğinde fetchSkills işlevini çağırma
+        function fetchSkills() {
+            dataTable.ajax.reload();
+        }
 
-        // Silme ve güncelleme düğmelerine tıklamada ilgili işlemleri gerçekleştirecek kodları ekleyin
-        $('#skillsTable').on('click', '.deleteSkillBtn', function () {
-            var skillId = $(this).data('skill-id');
-            // Silme işlemi için uygun bir kod ekleyin
-        });
-
-        $('#skillsTable').on('click', '.updateSkillBtn', function () {
-            var skillId = $(this).data('skill-id');
-            // Güncelleme işlemi için uygun bir kod ekleyin
-        });
     });
+    //******************Sİlme foksiyonu Başlangıç *****************************
+    function deleteSkill(skillId) {
+        Swal.fire({
+            title: 'Silmek istediğinize emin misiniz?',
+            text: "Kategori Silinecek",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: '/Admin/Skıll/DeleteSkill/' + skillId,
+                    method: 'POST',
+                    success: function () {
+                        Swal.fire(
+                            'Başarılı!',
+                            'Kategori silindi.',
+                            'success'
+                        );
+
+                        DataTable.ajax.reload();
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Hata!',
+                            'Kategori silinemedi.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+        //******************Sİlme foksiyonu Bitiş *****************************
+
+
+
+    // Edit işlevi
+
+   
+    // Edit işlemi için yeteneği al ve modalı doldur
+
+
+
+    //******************Edit foksiyonu Bitiş *****************************
+
+
+
+
+
 
 </script>
+
+
+
+

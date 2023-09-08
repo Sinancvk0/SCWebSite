@@ -1,0 +1,94 @@
+// :root CSS variables
+
+:root{
+
+  // Vertical Sidebar - Default Light
+
+  --#{$variable-prefix}sidebar-bg: #ffffff;
+  --#{$variable-prefix}sidebar-menu-item-color: #7b8190;
+  --#{$variable-prefix}sidebar-menu-sub-item-color: #7b8190;
+  --#{$variable-prefix}sidebar-menu-item-icon-color: #7b8190;
+  --#{$variable-prefix}sidebar-menu-item-hover-color: #383c40;
+  --#{$variable-prefix}sidebar-menu-item-active-color: #5b73e8;
+  --#{$variable-prefix}sidebar-menu-item-active-bg-color: #f3f8fb;
+  --#{$variable-prefix}sidebar-menu-item-active-bg-color-dark: #293552;
+
+    // Vertical Sidebar - Dark
+  --#{$variable-prefix}sidebar-dark-bg: #1c2742; //2c313a
+  --#{$variable-prefix}sidebar-dark-menu-item-color: #8c98bb;
+  --#{$variable-prefix}sidebar-dark-menu-sub-item-color: #7b85a2;
+  --#{$variable-prefix}sidebar-dark-menu-item-icon-color: #6d7794;
+  --#{$variable-prefix}sidebar-dark-menu-item-hover-color: #ffffff;
+  --#{$variable-prefix}sidebar-dark-menu-item-active-color: #ffffff;
+
+    // Topbar - Deafult Light
+  --#{$variable-prefix}header-bg: #ffffff;
+  --#{$variable-prefix}header-item-color: #555b6d;
+
+    // Topbar - Dark
+  --#{$variable-prefix}header-dark-bg: #2f374e;
+  --#{$variable-prefix}header-dark-item-color: #e9ecef;
+
+    // Footer
+  --#{$variable-prefix}footer-bg: #f2f2f5;
+  --#{$variable-prefix}footer-color: #74788d;
+
+  // Horizontal nav
+  --#{$variable-prefix}topnav-bg:   #ffffff;
+
+  --#{$variable-prefix}menu-item-color: #7b8190;
+  --#{$variable-prefix}menu-item-active-color: #5b73e8;
+
+    // body
+    --#{$variable-prefix}body-bg: #f5f6f8;
+    --#{$variable-prefix}body-color: #{$gray-700};
+    --#{$variable-prefix}body-color-rgb: #{to-rgb($body-color)};
+
+      // apex charts
+  --#{$variable-prefix}apex-grid-color: #f8f9fa;
+
+        // Display
+    --#{$variable-prefix}display-none: none;
+    --#{$variable-prefix}display-block: block;
+
+      // card-title-desc
+  --#{$variable-prefix}card-title-desc: #{$gray-600};
+  
+  // component variable
+
+  // theme-color
+  --#{$variable-prefix}light: #{$gray-200};
+  --#{$variable-prefix}light-rgb: #{to-rgb($gray-200)};
+  --#{$variable-prefix}dark: #{$gray-900};
+  --#{$variable-prefix}dark-rgb: #{to-rgb($gray-900)};
+  --#{$variable-prefix}text-muted: #{$gray-600};
+
+  // Dropdwon
+
+  --#{$variable-prefix}dropdown-link-hover-bg: #{$gray-100};
+
+  // form
+
+  --#{$variable-prefix}input-focus-border: #{tint-color($component-active-bg, 50%)};
+
+  // link
+  --#{$variable-prefix}link-color: #{$primary};
+  --#{$variable-prefix}link-hover-color: #{$primary};
+
+  // Border variable
+  --#{$prefix}input-border-color:             #{$gray-400};
+  --#{$prefix}input-focus-border-color:       #{darken($gray-400, 10%)};
+  --#{$variable-prefix}input-bg: #{$white};
+
+  // Boxed layout 
+  --#{$variable-prefix}boxed-body-bg:       #e9ebf0;
+
+  // input
+  --#{$variable-prefix}input-group-addon-bg: #{$gray-200};
+
+  --#{$variable-prefix}custom-white:            #{$white};
+
+   //check
+   --#{$variable-prefix}input-check-border:  #{$gray-400};
+
+}

@@ -5,10 +5,18 @@ namespace SCPersonalProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminController : Controller
     {
-      public PartialViewResult PartialSideBar()
-        {
-            return PartialView();
 
+        public PartialViewResult PartialHead()
+        {
+
+            return PartialView();   
         }
+
+        public PartialViewResult PartialSideBar()
+        {
+
+            return PartialView();
+        }
+       
     }
 }

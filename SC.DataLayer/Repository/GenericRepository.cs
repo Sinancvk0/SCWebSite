@@ -27,6 +27,9 @@ namespace SC.DataLayer.Repository
         {
             return _db.Set<T>().Find(id);
         }
+
+      
+
         public List<T> GetList()
         {
          return _db.Set<T>().ToList();

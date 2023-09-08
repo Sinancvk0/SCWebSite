@@ -1,0 +1,36 @@
+
+//
+// alerts.scss
+//
+
+.alert-border{
+    background-color: var(--bs-custom-white);
+    border-color: var(--#{$variable-prefix}light);
+    border-top: 2px solid var(--#{$variable-prefix}light);
+  }
+
+  // alert
+.alert-dismissible {
+    .btn-close{
+      font-size: 10px;
+      padding: $alert-padding-y * 1.4 $alert-padding-x;
+      box-shadow: none;
+      background: transparent escape-svg($btn-close-bg-dark) center / $btn-close-width auto no-repeat;
+    }
+}
+
+.alert-border{
+  .btn-close{
+    background: transparent escape-svg($btn-close-bg) center / $btn-close-width auto no-repeat;
+  }
+}
+  
+  @each $color,
+  $value in $theme-colors {
+      .alert-border-#{$color} {
+          border-top-color: $value;
+      }
+  }
+
+
+  

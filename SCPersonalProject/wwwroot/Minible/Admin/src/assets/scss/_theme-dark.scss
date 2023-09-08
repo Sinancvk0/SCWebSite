@@ -1,0 +1,225 @@
+// :root CSS dark variables
+
+
+[data-layout-mode="dark"]{
+
+  // Color system - Dark Mode only
+  $gray-100: #212529;
+  $gray-200: #2b2e3b;
+  $gray-300: #343747;
+  $gray-400: #9295a4;
+  $gray-500: #9699a8;
+  $gray-600: #c3cbe4;
+  $gray-700: #f6f6f6;
+  $gray-800: #eff2f7;
+  $gray-900: #f8f9fa;
+
+  $grays: (
+      "100": $gray-100,
+      "200": $gray-200,
+      "300": $gray-300,
+      "400": $gray-400,
+      "500": $gray-500,
+      "600": $gray-600,
+      "700": $gray-700,
+      "800": $gray-800,
+      "900": $gray-900
+  );
+
+  // Prefix for :root CSS variables
+  @each $color, $value in $grays {
+      --#{$variable-prefix}gray-#{$color}: #{$value};
+  }
+
+  --#{$variable-prefix}custom-white:      #{$gray-200};
+
+  // Vertical Sidebar  Light
+
+  --#{$variable-prefix}sidebar-bg: #2b2e3b;
+  --#{$variable-prefix}sidebar-menu-item-color: #898fa9;
+  --#{$variable-prefix}sidebar-menu-sub-item-color: #7b8198;
+  --#{$variable-prefix}sidebar-menu-item-icon-color: #666b7f;
+  --#{$variable-prefix}sidebar-menu-item-hover-color: #5b73e8;
+  --#{$variable-prefix}sidebar-menu-item-active-color: #5b73e8;
+  --#{$variable-prefix}sidebar-menu-item-active-bg-color: #34415d;
+  --#{$variable-prefix}sidebar-menu-item-active-bg-color-dark: #343747;
+
+ // Vertical Sidebar - Dark
+ --#{$variable-prefix}sidebar-dark-bg: #2b2e3b; //2c313a
+ --#{$variable-prefix}sidebar-dark-menu-item-color: #898fa9;
+ --#{$variable-prefix}sidebar-dark-menu-sub-item-color: #7b8198;
+ --#{$variable-prefix}sidebar-dark-menu-item-icon-color: #666b7f;
+ --#{$variable-prefix}sidebar-dark-menu-item-hover-color: #ffffff;
+ --#{$variable-prefix}sidebar-dark-menu-item-active-color: #ffffff;
+
+  // Topbar - Deafult Light
+  --#{$variable-prefix}header-bg: #2d313e;
+  --#{$variable-prefix}header-item-color: #a6b0cf;
+
+  // Topbar - Dark
+  --#{$variable-prefix}header-dark-bg: #5b73e8;
+  --#{$variable-prefix}header-dark-item-color: #e9ecef;
+
+  // Footer
+  --#{$variable-prefix}footer-bg: #262b3c;
+  --#{$variable-prefix}footer-color: #898fa9;
+
+    // Horizontal 
+  --#{$variable-prefix}topnav-bg:   #2d313e;
+
+  --#{$variable-prefix}menu-item-color: #898fa9;
+  --#{$variable-prefix}menu-item-active-color: #5b73e8;
+
+  // body
+  --#{$variable-prefix}body-bg : #22252f;
+  --#{$variable-prefix}body-color: #{$gray-400};
+  --#{$variable-prefix}body-color-rgb: #{to-rgb($body-color)};
+
+    // apex charts
+    --#{$variable-prefix}apex-grid-color: #32394e;
+
+      // Display
+    --#{$variable-prefix}display-none: block;
+    --#{$variable-prefix}display-block: none;
+
+    // card-title-desc
+  --#{$variable-prefix}card-title-desc: #{$gray-400};
+
+
+  // Horizontal nav
+  --#{$variable-prefix}topnav-bg: #{lighten($gray-200, 2.5%)};
+  --#{$variable-prefix}topnav-item-color: #{$gray-400};
+  --#{$variable-prefix}topnav-item-color-active: #{$white};
+
+  // twocolumn menu
+  --#{$variable-prefix}twocolumn-menu-iconview-bg: #{$white};
+  --#{$variable-prefix}twocolumn-menu-bg:  #{$white};
+    
+  // two column dark
+  --#{$variable-prefix}twocolumn-menu-iconview-bg-dark: var(--#{$variable-prefix}vertical-menu-bg-dark);
+  --#{$variable-prefix}twocolumn-menu-bg-dark:  #30363a;
+  --#{$variable-prefix}twocolumn-menu-item-color-dark: var(--#{$variable-prefix}vertical-menu-item-color-dark);
+  --#{$variable-prefix}twocolumn-menu-item-active-color-dark:  #{$white};
+  --#{$variable-prefix}twocolumn-menu-item-active-bg-dark:  #{rgba($white, .15)};
+
+  // boxed 
+  --#{$variable-prefix}boxed-body-bg: #{darken($gray-100, 4%)};
+
+  // heading-color
+  --#{$variable-prefix}heading-color: #{$gray-700};
+  
+  // component variable
+
+  --#{$variable-prefix}light: #{$gray-300};
+  --#{$variable-prefix}light-rgb: #{to-rgb($gray-300)};
+  --#{$variable-prefix}dark: #{$gray-800};
+  --#{$variable-prefix}dark-rgb: #{to-rgb($gray-800)};
+  --#{$variable-prefix}text-muted: #{$gray-500};
+
+  // link
+  --#{$variable-prefix}link-color: #{$gray-700};
+  --#{$variable-prefix}link-hover-color: #{$gray-700};
+
+  // Border variable
+  --#{$variable-prefix}border-color:  #{$gray-300};
+
+  // Boxed layout 
+  --#{$variable-prefix}boxed-body-bg:       #333847;
+
+  --#{$variable-prefix}card-logo-dark: none;
+  --#{$variable-prefix}card-logo-light: block;
+
+  //check
+  --#{$variable-prefix}input-check-border:  #{lighten($gray-300, 4%)};
+
+  // card
+  .card {
+    --#{$variable-prefix}card-bg: #2b2e3b;
+    --#{$variable-prefix}card-border-color: #2b2e3b;
+  }
+
+  // dropdown
+  .dropdown-menu{
+    --#{$variable-prefix}dropdown-bg: #{$gray-200};
+    --#{$variable-prefix}dropdown-link-color: #{$gray-500};
+    --#{$variable-prefix}dropdown-link-hover-color: #{shade-color($gray-900, 5%)};
+    --#{$variable-prefix}dropdown-link-hover-bg: #{$gray-300};
+    --#{$variable-prefix}dropdown-border-width: 1px;
+  }
+  
+
+  // offcanvas
+  .offcanvas,
+  .offcanvas-lg,
+  .offcanvas-md,
+  .offcanvas-sm,
+  .offcanvas-xl,
+  .offcanvas-xxl{
+      --#{$prefix}offcanvas-bg:                                       #{$gray-200};
+  }
+
+  // modal
+  .modal-content{
+    --#{$variable-prefix}modal-bg: #{$gray-200};
+  }
+
+  // progress
+  .progress{
+    --#{$variable-prefix}progress-bg: #{$gray-300};
+  }
+ 
+  --#{$variable-prefix}modal-content-bg: #{$gray-200};
+  --#{$variable-prefix}modal-content-border-color: #{$gray-300};
+
+   // nav tabs
+  .nav-tabs {
+    .nav-link.active{
+        --#{$variable-prefix}nav-tabs-link-active-color: #{$gray-900};
+        --#{$variable-prefix}nav-tabs-link-active-bg: #{$gray-300};
+    }
+  }
+
+  // accordion
+  .accordion-button{
+    --#{$variable-prefix}accordion-btn-bg: #{transparent};
+  }
+  .accordion{
+    --#{$variable-prefix}accordion-bg: #{transparent};
+  }
+
+  .toast{
+    --#{$variable-prefix}toast-header-bg:                                    #{rgba($gray-300, .85)};
+    --#{$variable-prefix}toast-bg:                                           #{rgba($gray-300, .85)};
+    --#{$variable-prefix}toast-border-color:                                 #{rgba($white, .1)};
+  }
+
+  .toast-header{
+    --#{$variable-prefix}toast-header-border-color:                          #{rgba($white, 0.1)};
+  }
+
+  // pagination
+  .pagination{
+    --#{$variable-prefix}pagination-hover-bg: #{lighten($gray-200, 4%)};
+    --#{$variable-prefix}pagination-focus-bg: #{lighten($gray-200, 4%)};
+  } 
+
+  //list
+  --#{$variable-prefix}list-group-hover-bg: #{lighten($gray-200, 2.5%)};
+
+  // popover
+  --#{$variable-prefix}popover-bg: #{lighten($gray-200, 1%)};
+
+  //form
+  
+  --#{$variable-prefix}input-bg: #{lighten($gray-200, 2%)};
+  --#{$variable-prefix}input-group-addon-border-color: #{$gray-300};
+  --#{$variable-prefix}input-border: #{$gray-300};
+  --#{$variable-prefix}input-border-color: #{$gray-300};
+  --#{$variable-prefix}input-focus-border: #{lighten($gray-300, 4%)};
+  --#{$variable-prefix}input-disabled-bg: #{$gray-200};
+
+  // input-group-addon
+  --#{$variable-prefix}input-placeholder-color: #{$gray-400};
+  --#{$variable-prefix}input-group-addon-bg: #{$gray-300};
+
+}
