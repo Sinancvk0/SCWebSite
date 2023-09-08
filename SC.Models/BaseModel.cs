@@ -11,7 +11,7 @@ namespace SC.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public bool isDeleted { get; set; } = false;
         public bool isActive { get; set; } = true;
         public DateTime DateCreated { get; set; } = DateTime.Now;

@@ -8,20 +8,16 @@
 <div>
     <div class="card">
         <div class="card-header  text-white bg-danger bg-gradient">
-            <span class="fs-4">Hakkında Bölümü  Listesi</span>
-            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Yetenek Ekle</a>
+            <span class="fs-4">Hizmetler Bölümü  Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Hizmet Ekle</a>
         </div>
         <div class="card-body">
-            <table id="aboutTable" class="table table-bordered table-striped" style="width:100%">
+            <table id="serviceTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-
                         <th>#</th>
                         <th>Name</th>
-                        <th>Ünvan</th>
-                        <th>Email</th>
                         <th>Açıklama</th>
-                        <th>Telefon</th>
                         <th>Görsel</th>
                         <th>Oluşturulma Tarihi</th>
                         <th>İşlemler</th>
@@ -46,25 +42,15 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="mb-3">
-                        <label class="form-label">Ad Soyad</label>
+                        <label class="form-label">Hizmet Adı</label>
                         <input type="text" id="txtName" class="form-control">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Ünvan</label>
-                        <textarea id="txtProfile" class="form-control"></textarea>
-                    </div>
+                
                     <div class="mb-3">
                         <label class="form-label">Açıklama</label>
                         <textarea id="txtDescription" class="form-control"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Telefon No</label>
-                        <textarea id="txtPhone" class="form-control"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email Adresi</label>
-                        <textarea id="txtEmail" class="form-control"></textarea>
-                    </div>
+                   
                     <div class="mb-3">
                         <label class="form-label">Görsel</label>
                         <textarea id="txtImage" class="form-control"></textarea>
@@ -83,17 +69,14 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
     $(document).ready(function () {
+
         $("#btnEkle").click(function () {
-            $("#modalTitle").text("Hakkında Bölümü");
+            $("#modalTitle").text("Hizmetler Bölümü");
             $("#btnSave").text("Kaydet").removeClass('btn-success').addClass('btn-primary');
             $("#txtName").val("");
-            $("#txtProfile").val("");
             $("#txtDescription").val("");
-            $("#txtPhone").val("");
-            $("#txtEmail").val("");
             $("#txtImage").val("");
 
             $("#modal").modal('show');
@@ -103,64 +86,52 @@
                 let veri = {
 
                     name: $("#txtName").val(),
-                    profile: $("#txtProfile").val(),
-                    description: $("#txtDescription").val(),
-                    phone: $("#txtPhone").val(),
-                    email: $("#txtEmail").val(),
-                    imageUrl: $("#txtImage").val(),
+                    desciription: $("#txtDescription").val(),
+                    imageURL: $("#txtImage").val(),
                 };
 
                 $.ajax({
                     type: 'POST',
-                    url: '/Admin/About/AddAbout',
+                    url: '/Admin/Service/AddService',
                     data: veri,
                     success: function (res) {
                         $("#modal").modal('hide');
                         $("#txtName").val("");
-                        $("#txtProfile").val("");
                         $("#txtDescription").val("");
-                        $("#txtPhone").val("");
-                        $("#txtEmail").val("");
                         $("#txtImage").val("");
-                        dataTable.ajax.reload();
+                        fetchAbout(); // DataTable'ı güncelle
                     }
                 });
             });
         });
 
-        var dataTable = $('#aboutTable').DataTable({
+        var dataTable = $('#serviceTable').DataTable({
             ajax: {
-                url: '/Admin/About/GetList',
+                url: '/Admin/Service/GetList',
                 dataSrc: ''
             },
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'profile' },
-                { data: 'email' },
                 { data: 'desciription' },
-                { data: 'phone' },
-                { data: 'imageURl' },
+                { data: 'imageURL' },
                 { data: 'dateCreated' },
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return `<a href="#" onclick="deleteAbout(${row.id})" class="btn btn-sm btn-danger">Sil</a>
-                                <a href="#" onclick="editAbout(${data.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
+                        return `<a href="#" onclick="deleteService(${row.id})" class="btn btn-sm btn-danger">Sil</a>
+                                <a href="#" onclick="edit(${data.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
                     }
                 }
             ]
         });
-
-      
-     
-
     });
+
     //******************Sİlme foksiyonu Başlangıç *****************************
-    function deleteAbout(aboutId) {
+    function deleteService (serviceId) {
         Swal.fire({
             title: 'Silmek istediğinize emin misiniz?',
-            text: "Hakkında Silinecek",
+            text: "Kategori Silinecek",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -168,9 +139,8 @@
             confirmButtonText: 'Sil!'
         }).then((result) => {
             if (result.isConfirmed) {
-
                 $.ajax({
-                    url: '/Admin/About/DeleteAbout/' + aboutId,
+                    url: '/Admin/Service/DeleteService/' + serviceId,
                     method: 'POST',
                     success: function () {
                         Swal.fire(
@@ -192,10 +162,6 @@
             }
         });
     }
-    //******************Sİlme foksiyonu Bitiş *****************************
-    function editAbout(id) {
-        // Düzenleme işlemini gerçekleştir
-    }
+        //******************Sİlme foksiyonu Bitiş *****************************
+
 </script>
-
-

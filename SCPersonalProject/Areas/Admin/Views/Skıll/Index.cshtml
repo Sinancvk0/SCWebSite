@@ -103,6 +103,8 @@
                 dataSrc: ''
             },
             columns: [
+
+
                 { data: 'id' }, // Sıralı numara sütunu
                 { data: 'name' }, // İsim sütunu
                 { data: 'value' }, // Değer sütunu
@@ -138,7 +140,6 @@
             confirmButtonText: 'Sil!'
         }).then((result) => {
             if (result.isConfirmed) {
-
                 $.ajax({
                     url: '/Admin/Skıll/DeleteSkill/' + skillId,
                     method: 'POST',

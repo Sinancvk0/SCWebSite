@@ -5,13 +5,13 @@ using SC.Models;
 namespace SCPersonalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AboutController : Controller
+    public class ServiceController : Controller
     {
-        private readonly IAboutService _aboutService;
+        private readonly IServiceService _service;
 
-        public AboutController(IAboutService aboutService)
+        public ServiceController(IServiceService service)
         {
-            _aboutService = aboutService;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -22,37 +22,35 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetList()
         {
-            var values = _aboutService.TGetList();
+            var values = _service.TGetList();
 
             return Json(values);
         }
 
         [HttpGet]
-
-        public IActionResult AddAbout()
+        public IActionResult AddService()
         {
             return View();
 
         }
         [HttpPost]
-
-        public IActionResult AddAbout(About about)
+        public IActionResult AddService(Service service)
         {
-            _aboutService.TAdd(about);
+            _service.TAdd(service);
+
             return Ok();
 
         }
-
         [HttpPost]
-
-        public IActionResult DeleteAbout(int id)
+        public IActionResult DeleteService (int id)
         {
-            var values = _aboutService.TGetById(id);
-
-            _aboutService.TDelete(values);
+            var values=_service.TGetById(id);
+            _service.TDelete(values);
 
             return Ok();
+
         }
+
 
 
     }
