@@ -34,6 +34,8 @@ namespace SC.Bussines.Content
            return _serviceDal.GetById(id);  
         }
 
+      
+
         public List<Service> TGetList()
         {
           return _serviceDal.GetList();

@@ -28,6 +28,8 @@ namespace SC.Bussines.Content
           return _contactDal.GetById(id);
         }
 
+       
+
         public List<Contact> TGetList()
         {
            return _contactDal.GetList();

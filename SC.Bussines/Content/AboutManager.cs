@@ -28,6 +28,7 @@ namespace SC.Bussines.Content
           return  _aboutDal.GetById(id);  
         }
 
+
         public List<About> TGetList()
         {
          return _aboutDal.GetList();

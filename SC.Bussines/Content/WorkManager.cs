@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SC.Bussines.Content
 {
-    public class WorkManager : IGenericService<Work>,IWorkService
+    public class WorkManager : IGenericService<Work>, IWorkService
     {
         private readonly IWorkDal _workDal;
 
@@ -35,7 +35,7 @@ namespace SC.Bussines.Content
 
         public List<Work> TGetList()
         {
-           return _workDal.GetList();   
+            return _workDal.GetList();
         }
 
         public void TUpdate(Work t)

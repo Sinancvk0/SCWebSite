@@ -28,6 +28,8 @@ namespace SC.Bussines.Content
          return _skıllsDal.GetById(id);
         }
 
+     
+
         public List<Skılls> TGetList()
         {
            return _skıllsDal.GetList();
