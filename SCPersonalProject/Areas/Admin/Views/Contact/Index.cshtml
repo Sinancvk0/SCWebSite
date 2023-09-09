@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*****************Title Başlangıç************************@
+<div>
+    <div class="card">
+        <div class="card-header  text-white bg-danger bg-gradient">
+            <span class="fs-4">İletişim Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">İletişim Ekle</a>
+        </div>
+        <div class="card-body">
+            <table id="contactTable" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>Ad</th>
+                        <th>Açıklama</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+</div>
+@*****************Title Bitiş************************@
+
+@*****************Modal Başlangıç************************@
+<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+     aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Projeler Bölümü  </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="mb-3">
+                        <label class="form-label"> Başlık</label>
+                        <input type="text" id="txtTitle" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"> Adı</label>
+                        <input type="text" id="txtName" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama</label>
+                        <input type="text" id="txtDescription" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefon</label>
+                        <input type="text" id="txtPhone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="text" id="txtEmail" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#" id="btnSave" class="btn btn-primary">Kaydet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@**********************Modal Bitiş ***************************************@
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#btnEkle").click(function () {
+            $("#modalTitle").text("İletişim Bölümü");
+            $("#btnSave").text("Kaydet").removeClass('btn-success').addClass('btn-primary');
+            $("#txtTitle").val("");
+            $("#txtName").val("");
+            $("#txtDescription").val("");
+            $("#txtPhone").val("");
+            $("#txtEmail").val("");
+          
+
+            $("#modal").modal('show');
+
+            // Kaydet düğmesi tıklama olayı
+            $("#btnSave").off().click(function () {
+                let veri = {
+
+                    title: $("#txtTitle").val(),
+                    name: $("#txtName").val(),
+                    desciription: $("#txtDescription").val(),
+                    phone: $("#txtPhone").val(),
+                    email: $("#txtEmail").val(),
+                
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/Contact/AddContact',
+                    data: veri,
+                    success: function (res) {
+                        $("#modal").modal('hide');
+                        $("#txtTitle").val("");
+                        $("#txtName").val("");
+                        $("#txtDescription").val("");
+                        $("#txtPhone").val("");
+                        $("#txtEmail").val("");
+                        fetchAbout(); // DataTable'ı güncelle
+                    }
+                });
+            });
+        });
+
+        var dataTable = $('#contactTable').DataTable({
+            ajax: {
+                url: '/Admin/Contact/GetList',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'title' },
+                { data: 'name' },
+                { data: 'desciription' },
+                { data: 'phone' },
+                { data: 'email' },
+                { data: 'dateCreated' },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return `<a href="#" onclick="deleteContact(${row.id})" class="btn btn-sm btn-danger">Sil</a>
+                                <a href="#" onclick="editContact(${data.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
+                    }
+                }
+            ]
+        });
+    });
+
+    //******************Sİlme foksiyonu Başlangıç *****************************
+    function deleteContact (contactId) {
+        Swal.fire({
+            title: 'Silmek istediğinize emin misiniz?',
+            text: "Proje Silinecek",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Admin/Contact/DeleteContact/' + contactId,
+                    method: 'POST',
+                    success: function () {
+                        Swal.fire(
+                            'Başarılı!',
+                            'Proje silindi.',
+                            'success'
+                        );
+
+
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Hata!',
+                            'Kategori silinemedi.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+        //******************Sİlme foksiyonu Bitiş *****************************
+
+</script>
+
