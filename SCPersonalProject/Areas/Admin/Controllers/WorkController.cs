@@ -11,12 +11,12 @@ namespace SCPersonalProject.Areas.Admin.Controllers
     {
         private readonly IWorkService _workService;
 
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public WorkController(IWorkService workService, IWebHostEnvironment webHostEnvironment)
+
+        public WorkController(IWorkService workService)
         {
             _workService = workService;
-            _webHostEnvironment = webHostEnvironment;
+ 
         }
 
         public IActionResult Index()
@@ -41,23 +41,25 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         }
         [HttpPost]
 
-        public IActionResult AddWork(Work work, IFormFile image)
+        public IActionResult AddWork(Work work,IFormFile image)
         {
             if (image != null && image.Length > 0)
             {
-                // Resim yükleme işlemi burada gerçekleştirilecek
-                var uploads = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
+                // Dosya yükleme işlemini burada yapabilirsiniz.
+                // Örneğin, dosyayı kaydedebilir veya işleyebilirsiniz.
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
-                var filePath = Path.Combine(uploads, fileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    image.CopyTo(fileStream);
+                    image.CopyTo(stream);
                 }
 
-                // Resim yolu veritabanına kaydedilebilir
-                work.ImageURL = "/uploads/" + fileName;
+                // İşleme tamamlandıktan sonra dosya adını veritabanına kaydedebilirsiniz.
+                work.ImageURL = "/images/" + fileName;
             }
+
+
             _workService.TAdd(work);
 
             return Ok();

@@ -32,12 +32,11 @@
 @*****************Title Bitiş************************@
 
 @*****************Modal Başlangıç************************@
-<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-     aria-labelledby="modalTitleId" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Projeler Bölümü  </h5>
+                <h5 class="modal-title" id="modalTitle">Projeler Bölümü</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -48,8 +47,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Görsel</label>
-                        <input type="file" id="txtImage" class="form-control"/>
-                    </div> 
+                        <input type="file" id="fileImage" class="form-control" />
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -59,6 +58,7 @@
         </div>
     </div>
 </div>
+
 
 @**********************Modal Bitiş ***************************************@
 
@@ -74,23 +74,27 @@
 
             $("#modal").modal('show');
 
-            // Kaydet düğmesi tıklama olayı
+            
             $("#btnSave").off().click(function () {
                 let veri = {
-
                     name: $("#txtName").val(),
-                    imageURL: $("#txtImage").val(),
                 };
+
+                let fileData = new FormData();
+                fileData.append("name", veri.name);
+                fileData.append("image", $("#fileImage")[0].files[0]); 
 
                 $.ajax({
                     type: 'POST',
                     url: '/Admin/Work/AddWork',
-                    data: veri,
+                    data: fileData, 
+                    processData: false,
+                    contentType: false, 
                     success: function (res) {
                         $("#modal").modal('hide');
                         $("#txtName").val("");
-                        $("#txtImage").val("");
-                        fetchAbout(); // DataTable'ı güncelle
+                        $("#fileImage").val("");
+                        fetchAbout(); // DataTable güncelle
                     }
                 });
             });
@@ -118,7 +122,7 @@
     });
 
     //******************Sİlme foksiyonu Başlangıç *****************************
-    function deleteWork (workId) {
+    function deleteWork(workId) {
         Swal.fire({
             title: 'Silmek istediğinize emin misiniz?',
             text: "Proje Silinecek",
@@ -133,13 +137,13 @@
                     url: '/Admin/Work/DeleteWork/' + workId,
                     method: 'POST',
                     success: function () {
-                        Swal.fire(  
+                        Swal.fire(
                             'Başarılı!',
                             'Proje silindi.',
                             'success'
                         );
 
-                     
+
                     },
                     error: function () {
                         Swal.fire(

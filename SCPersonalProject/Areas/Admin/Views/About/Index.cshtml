@@ -1,21 +1,18 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@*****************Title Başlangıç************************@
 <div>
     <div class="card">
-        <div class="card-header  text-white bg-danger bg-gradient">
-            <span class="fs-4">Hakkında Bölümü  Listesi</span>
-            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Yetenek Ekle</a>
+        <div class="card-header text-white bg-danger bg-gradient">
+            <span class="fs-4">Hakkında Bölümü Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Hakkında Ekle</a>
         </div>
         <div class="card-body">
             <table id="aboutTable" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-
                         <th>#</th>
                         <th>Name</th>
                         <th>Ünvan</th>
@@ -27,20 +24,17 @@
                         <th>İşlemler</th>
                     </tr>
                 </thead>
-
             </table>
         </div>
     </div>
 </div>
-@*****************Title Bitiş************************@
 
-@*****************Modal Başlangıç************************@
 <div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
      aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Hakkında Bölümü  </h5>
+                <h5 class="modal-title" id="modalTitle">Hakkında Bölümü</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -67,22 +61,21 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Görsel</label>
-                        <textarea id="txtImage" class="form-control"></textarea>
+                        <input type="file" id="fileImage" class="form-control" />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                 <a href="#" id="btnSave" class="btn btn-primary">Kaydet</a>
             </div>
         </div>
     </div>
 </div>
 
-@**********************Modal Bitiş ***************************************@
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
 <script>
     $(document).ready(function () {
@@ -101,19 +94,28 @@
             // Kaydet düğmesi tıklama olayı
             $("#btnSave").off().click(function () {
                 let veri = {
-
                     name: $("#txtName").val(),
                     profile: $("#txtProfile").val(),
-                    description: $("#txtDescription").val(),
+                    desciription: $("#txtDescription").val(),
                     phone: $("#txtPhone").val(),
                     email: $("#txtEmail").val(),
-                    imageUrl: $("#txtImage").val(),
                 };
+
+                let fileData = new FormData();
+                fileData.append('name', veri.name);
+                fileData.append('profile', veri.profile);
+                fileData.append('desciription', veri.desciription);
+                fileData.append('phone', veri.phone);
+                fileData.append('email', veri.email);
+
+                fileData.append("image", $("#fileImage")[0].files[0]);
 
                 $.ajax({
                     type: 'POST',
                     url: '/Admin/About/AddAbout',
-                    data: veri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
                     success: function (res) {
                         $("#modal").modal('hide');
                         $("#txtName").val("");
@@ -123,6 +125,13 @@
                         $("#txtEmail").val("");
                         $("#txtImage").val("");
                         dataTable.ajax.reload();
+                    },
+                    error: function (error) {
+                        Swal.fire(
+                            'Hata!',
+                            'Veri kaydetme işlemi başarısız oldu. Hata: ' + error.statusText,
+                            'error'
+                        );
                     }
                 });
             });
@@ -138,9 +147,9 @@
                 { data: 'name' },
                 { data: 'profile' },
                 { data: 'email' },
-                { data: 'desciription' },
+                { data: 'desciription' }, 
                 { data: 'phone' },
-                { data: 'imageURl' },
+                { data: 'imageURl' }, 
                 { data: 'dateCreated' },
                 {
                     data: null,
@@ -151,12 +160,8 @@
                 }
             ]
         });
-
-      
-     
-
     });
-    //******************Sİlme foksiyonu Başlangıç *****************************
+
     function deleteAbout(aboutId) {
         Swal.fire({
             title: 'Silmek istediğinize emin misiniz?',
@@ -168,7 +173,6 @@
             confirmButtonText: 'Sil!'
         }).then((result) => {
             if (result.isConfirmed) {
-
                 $.ajax({
                     url: '/Admin/About/DeleteAbout/' + aboutId,
                     method: 'POST',
@@ -178,8 +182,7 @@
                             'Kategori silindi.',
                             'success'
                         );
-
-                        DataTable.ajax.reload();
+                        dataTable.ajax.reload();
                     },
                     error: function () {
                         Swal.fire(
@@ -192,10 +195,4 @@
             }
         });
     }
-    //******************Sİlme foksiyonu Bitiş *****************************
-    function editAbout(id) {
-        // Düzenleme işlemini gerçekleştir
-    }
 </script>
-
-
