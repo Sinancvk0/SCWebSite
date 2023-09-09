@@ -20,17 +20,17 @@ namespace SC.Bussines.Content
 
         public void TAdd(Work t)
         {
-            throw new NotImplementedException();
+            _workDal.Insert(t);
         }
 
         public void TDelete(Work t)
         {
-            throw new NotImplementedException();
+            _workDal.Delete(t);
         }
 
         public Work TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _workDal.GetById(id);
         }
 
         public List<Work> TGetList()
@@ -40,7 +40,7 @@ namespace SC.Bussines.Content
 
         public void TUpdate(Work t)
         {
-            throw new NotImplementedException();
+            _workDal.Update(t);
         }
     }
 }
