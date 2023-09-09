@@ -164,6 +164,7 @@
     <Folder Include="wwwroot\Minible\Documentation\assets\libs\jquery.easing\bower_components\jquery\dist\" />
     <Folder Include="wwwroot\Minible\Documentation\assets\libs\jquery.easing\bower_components\jquery\src\" />
     <Folder Include="wwwroot\Minible\Documentation\assets\libs\jquery.easing\example\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
