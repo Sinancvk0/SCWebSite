@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using SC.Bussines.Container;
 using SC.Bussines.Content;
@@ -34,6 +35,7 @@ namespace SCPersonalProject
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404");
             app.UseStaticFiles();
 
             app.UseRouting();
