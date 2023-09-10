@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SC.Models;
 
 namespace SC.DataLayer
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser,AppRole,int>
+
     {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -18,6 +20,8 @@ namespace SC.DataLayer
         public DbSet<Message> Messages { get; set; }
         public DbSet<Experinece> Experineces { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+
 
     }
    
