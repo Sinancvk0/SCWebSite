@@ -68,6 +68,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -89,7 +91,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\Minible\Admin\dist\assets\libs\datatables.net-autofill-bs4\node_modules\jquery\dist\" />
     <Folder Include="wwwroot\Minible\Admin\dist\assets\libs\datatables.net-autofill-bs4\node_modules\jquery\external\sizzle\dist\" />
     <Folder Include="wwwroot\Minible\Admin\dist\assets\libs\datatables.net-autofill-bs4\node_modules\jquery\src\" />

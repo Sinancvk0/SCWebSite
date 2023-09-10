@@ -45,11 +45,19 @@ namespace SCPersonalProject.Controllers
         [HttpPost]
         public PartialViewResult SendMessage(Message m)
         {
-            //m.Id = Guid.NewGuid();
-            m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            m.isActive = true;
-            _messageService.TAdd(m);
 
+            if (ModelState.IsValid)
+            {
+                m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                m.isActive = true;
+                _messageService.TAdd(m);
+
+            }
+            else
+            {
+             
+                return PartialView(m);
+            }
             return PartialView();
         }
     }
