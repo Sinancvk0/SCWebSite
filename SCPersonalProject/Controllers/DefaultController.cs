@@ -45,19 +45,22 @@ namespace SCPersonalProject.Controllers
         [HttpPost]
         public PartialViewResult SendMessage(Message m)
         {
-
-            if (ModelState.IsValid)
-            {
-                m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            bool isMessageSent = true;
+            m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 m.isActive = true;
                 _messageService.TAdd(m);
+  
 
+            if (isMessageSent)
+            {
+                ViewBag.SuccessMessage = "Mesajınız başarıyla gönderildi.";
             }
             else
             {
-             
-                return PartialView(m);
+                ViewBag.ErrorMessage = "Mesaj gönderme işlemi başarısız oldu.";
             }
+
+
             return PartialView();
         }
     }
