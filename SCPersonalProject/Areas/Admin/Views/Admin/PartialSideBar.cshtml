@@ -1,10 +1,12 @@
-﻿<div id="sidebar-menu">
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div id="sidebar-menu">
     <!-- Left Menu Start -->
     <ul class="metismenu list-unstyled" id="side-menu">
         <li class="menu-title">Menu</li>
         <li>
             <a asp-action="Index" asp-controller="User">
-                <i class="uil-users-alt"></i><span>Kullanıcı Yönetimi</span>
+                <i class="uil-users-alt"></i><span>Dashboard</span>
             </a>
         </li>
         <li>
@@ -13,17 +15,18 @@
                 <span>Düzenlemeler</span>
             </a>
             <ul class="sub-menu" aria-expanded="true">
-                <li><a asp-controller="About" asp-action="Hakkkımda">Hakkımda</a></li>
-                <li><a asp-controller="Author" asp-action="Index">Hizmetler</a></li>
-                <li><a asp-controller="Publisher" asp-action="Index">Projeler</a></li>
-                <li><a asp-controller="Category" asp-action="Index">Yetenekler</a></li>
-                <li><a asp-controller="Category" asp-action="Index">İletişim</a></li>
-                <li><a asp-controller="Category" asp-action="Index">Mesajlar</a></li>
-                <li><a asp-controller="Category" asp-action="Index">Blog</a></li>
+                <li><a asp-controller="About" asp-action="Index">Hakkımda</a></li>
+                <li><a asp-controller="Service" asp-action="Index">Hizmetler</a></li>
+                <li><a asp-controller="Work" asp-action="Index">Projeler</a></li>
+                <li><a asp-controller="Skıll" asp-action="Index">Yetenekler</a></li>
+                <li><a asp-controller="Contact" asp-action="Index">İletişim</a></li>
+
 
             </ul>
         </li>
-        <li><a asp-controller="Category" asp-action="Index">Ayarlar</a></li>
-        <li><a asp-controller="Category" asp-action="Index">Çıkış Yap</a></li>
+        <li><a class="uil-comment-alt-message" asp-controller="Message" asp-action="Index"> Mesajlar</a></li>
+        <li><a class="uil-blogger-alt" asp-controller="Blog" asp-action="Index">Blog</a></li>
+        <li><a class="uil-sliders-v-alt" asp-controller="Category" asp-action="Index"> Ayarlar</a></li>
+        <li><a class="uil-sign-out-alt" asp-controller="Category" asp-action="Index"> Çıkış Yap</a></li>
     </ul>
 </div>
