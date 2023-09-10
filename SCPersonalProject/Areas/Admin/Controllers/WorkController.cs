@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SC.Bussines.Services;
 using SC.Models;
 using System.Drawing;
@@ -6,6 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace SCPersonalProject.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class WorkController : Controller
     {
