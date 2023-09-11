@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SC.Bussines.Content
 {
-    public class MessageManager :IGenericService<Message>,IMessageService
+    public class MessageManager : IGenericService<Message>, IMessageService
     {
         private readonly IMessageDal _messageDal;
 
@@ -25,22 +25,22 @@ namespace SC.Bussines.Content
 
         public void TDelete(Message t)
         {
-            throw new NotImplementedException();
+            _messageDal.Delete(t);
         }
 
         public Message TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _messageDal.GetById(id);
         }
 
         public List<Message> TGetList()
         {
-            throw new NotImplementedException();
+            return _messageDal.GetList();
         }
 
         public void TUpdate(Message t)
         {
-            throw new NotImplementedException();
+         _messageDal.Update(t);
         }
     }
 }
