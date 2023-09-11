@@ -13,6 +13,7 @@ namespace SC.Models
         public string? Phone { get; set; }
         public string? Desciription { get; set; }
         public string? ImageURl { get; set; }
+        public virtual ICollection<Skılls>?  Skılls { get; set; }
 
 
 

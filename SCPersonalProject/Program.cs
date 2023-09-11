@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SC.Bussines.Container;
 using SC.Bussines.Content;
 using SC.Bussines.Services;
@@ -14,22 +18,43 @@ namespace SCPersonalProject
     {
         public static void Main(string[] args)
         {
-      
+
             var builder = WebApplication.CreateBuilder(args);
 
 
-       
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-         
+
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<AppDbContext>();    
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+
+
+            //builder.Services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().
+            //    Build();
+
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+
+
+            //});
+
+            //builder.Services.AddMvc();
+            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+            //{
+            //    x.LoginPath = "/Admin/Login/Index/";
+
+            //});
+      
+          
+          
 
             ExtensionsDb.ContainerDependencies(builder.Services);
 
             var app = builder.Build();
-           
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

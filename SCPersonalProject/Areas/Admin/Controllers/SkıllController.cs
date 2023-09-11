@@ -44,7 +44,7 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddSkill(Skılls skılls)
         {
-           
+            skılls.AboutId = 1;
             _sk.TAdd(skılls);
 
             return Ok();

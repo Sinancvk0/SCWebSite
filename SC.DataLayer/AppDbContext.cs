@@ -12,15 +12,15 @@ namespace SC.DataLayer
         {
 
         }
-        public DbSet<About> Abouts { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<Skılls> Skılls { get; set; }
-        public DbSet<SocialMedia> SocialMedia { get; set; }
-        public DbSet<Work> Works { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Experinece> Experineces { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
+        public virtual  DbSet<About> Abouts { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Skılls> Skılls { get; set; }
+        public virtual DbSet<SocialMedia> SocialMedia { get; set; }
+        public virtual DbSet<Work> Works { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Experinece> Experineces { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Blog> Blogs { get; set; }
 
 
     }

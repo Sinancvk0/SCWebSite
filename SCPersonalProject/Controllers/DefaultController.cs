@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SC.Bussines.Services;
 using SC.Models;
 using System.Drawing.Text;
 
 namespace SCPersonalProject.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         private readonly IMessageService _messageService;
@@ -37,31 +39,19 @@ namespace SCPersonalProject.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult SendMessage()
+        public IActionResult SendMessage()
         {
 
-            return PartialView();
+            return Ok();
         }
         [HttpPost]
-        public PartialViewResult SendMessage(Message m)
+        public IActionResult SendMessage(Message m)
         {
-            bool isMessageSent = true;
+        
             m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 m.isActive = true;
                 _messageService.TAdd(m);
-  
-
-            if (isMessageSent)
-            {
-                ViewBag.SuccessMessage = "Mesajınız başarıyla gönderildi.";
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Mesaj gönderme işlemi başarısız oldu.";
-            }
-
-
-            return PartialView();
+            return Ok();
         }
     }
 }

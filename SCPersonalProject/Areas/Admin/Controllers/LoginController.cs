@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SC.Models;
 using SCPersonalProject.Areas.Admin.Models;
 
 namespace SCPersonalProject.Areas.Admin.Controllers
 {
+    [AllowAnonymous]
     [Area("Admin")]
     public class LoginController : Controller
     {

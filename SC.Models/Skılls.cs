@@ -10,5 +10,7 @@ namespace SC.Models
     {
 
         public string? Value { get; set; }
+        public int AboutId { get; set; }
+        public virtual About About  { get; set; }
     }
 }

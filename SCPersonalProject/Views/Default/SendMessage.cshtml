@@ -1,33 +1,33 @@
-﻿
-
-<div class="title-box-2">
+﻿<div class="title-box-2">
     <h5 class="title-left">
         Send Message Us
     </h5>
 </div>
 <div>
-    <form method="post" action="/Default/SendMessage" class="php-email-form">
+    <form action="/Default/SendMessage" method="post" role="form" class="asp-email-form">
         <div class="row">
             <div class="col-md-12 mb-3">
                 <div class="form-group">
-                    <input type="text" name="Name" class="form-control" id="name" placeholder="Adınız Soyadınız" required>
+                    <input type="text" name="Name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
             </div>
             <div class="col-md-12 mb-3">
                 <div class="form-group">
-                    <input type="email" class="form-control" name="Mail" id="email" placeholder="Mail Adresiniz" required>
+                    <input type="email" class="form-control" name="Mail" id="email" placeholder="Your Email" required>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <textarea class="form-control" name="Content" rows="5" placeholder="Mesaj" required></textarea>
+                    <textarea class="form-control" name="Content" rows="5" placeholder="Message" required></textarea>
                 </div>
             </div>
             <div class="col-md-12 text-center my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div id="status-messages">
+                    <div class="loading" style="display: none;">Loading</div>
+                    <div class="error-message" style="display: none;"></div>
+                    <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+                </div>
             </div>
             <div class="col-md-12 text-center">
                 <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
@@ -35,3 +35,72 @@
         </div>
     </form>
 </div>
+<style>
+    #status-messages {
+        text-align: center;
+    }
+
+    .loading, .sent-message, .error-message {
+        display: none;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px auto;
+        width: 200px;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .sent-message {
+        background-color: #4CAF50;
+    }
+
+    .error-message {
+        background-color: #f44336;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".asp-email-form");
+        const statusMessages = document.querySelector("#status-messages");
+        const loadingMessage = statusMessages.querySelector('.loading');
+        const sentMessage = statusMessages.querySelector('.sent-message');
+        const errorMessage = statusMessages.querySelector('.error-message');
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); 
+
+            
+            loadingMessage.style.display = 'block';
+            sentMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+  
+            const formData = new FormData(form);
+
+            try {
+            
+                const response = await fetch("/Default/SendMessage", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                
+                    sentMessage.style.display = 'block';
+                    loadingMessage.style.display = 'none'; 
+                    form.reset();
+                } else {
+                  
+                    errorMessage.style.display = 'block';
+                    loadingMessage.style.display = 'none'; 
+                }
+            } catch (error) {
+             
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Error: ' + error.message;
+                loadingMessage.style.display = 'none'; 
+            }
+        });
+    });
+</script>
