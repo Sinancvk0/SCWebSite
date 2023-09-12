@@ -34,6 +34,9 @@ namespace SC.Bussines.Container
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<IBlogDal, EfBlogDal>();
 
+            services.AddScoped<IBlogDetailsService, BlogDetailsManager>();
+            services.AddScoped<IBlogDetailsDal, EfBlogDetails>();
+
 
         }
     }
