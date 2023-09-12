@@ -274,7 +274,7 @@ namespace SC.DataLayer.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("SC.Models.Blog", b =>
+            modelBuilder.Entity("SC.Models.BlogCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,10 +288,6 @@ namespace SC.DataLayer.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -303,7 +299,52 @@ namespace SC.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("GetBlogCategories");
+                });
+
+            modelBuilder.Entity("SC.Models.BlogDetaills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlogCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tags")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogCategoryId");
+
+                    b.ToTable("BlogDetaills");
                 });
 
             modelBuilder.Entity("SC.Models.Contact", b =>
@@ -611,6 +652,17 @@ namespace SC.DataLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SC.Models.BlogDetaills", b =>
+                {
+                    b.HasOne("SC.Models.BlogCategory", "BlogCategory")
+                        .WithMany("BlogDetaills")
+                        .HasForeignKey("BlogCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogCategory");
+                });
+
             modelBuilder.Entity("SC.Models.Skılls", b =>
                 {
                     b.HasOne("SC.Models.About", "About")
@@ -625,6 +677,11 @@ namespace SC.DataLayer.Migrations
             modelBuilder.Entity("SC.Models.About", b =>
                 {
                     b.Navigation("Skılls");
+                });
+
+            modelBuilder.Entity("SC.Models.BlogCategory", b =>
+                {
+                    b.Navigation("BlogDetaills");
                 });
 #pragma warning restore 612, 618
         }

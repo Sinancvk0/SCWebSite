@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SC.Models
 {
-    public class Blog:BaseModel
+    public class BlogCategory:BaseModel
     {
-        public string Description { get; set; }
+        public virtual ICollection<BlogDetaills> BlogDetaills { get; set; }
+
     }
 }

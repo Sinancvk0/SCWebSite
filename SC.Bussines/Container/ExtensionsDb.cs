@@ -31,6 +31,9 @@ namespace SC.Bussines.Container
             services.AddScoped<ISkıllsService, SkıllsManager>();
             services.AddScoped<ISkıllsDal, EfSkıllsDal>();
 
+            services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<IBlogDal, EfBlogDal>();
+
 
         }
     }

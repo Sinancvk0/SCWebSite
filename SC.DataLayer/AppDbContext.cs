@@ -20,7 +20,8 @@ namespace SC.DataLayer
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Experinece> Experineces { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<BlogCategory> GetBlogCategories { get; set; }
+        public virtual DbSet<BlogDetaills> BlogDetaills { get; set; }
 
 
     }
