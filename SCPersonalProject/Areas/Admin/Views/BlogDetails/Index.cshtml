@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <div class="card">
+        <div class="card-header text-white bg-danger bg-gradient">
+            <span class="fs-4">Yetenek Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Yetenek Ekle</a>
+        </div>
+        <div class="card-body">
+            <table id="DetailsTable" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Guid</th>
+                        <th>Blog Başlık</th>
+                        <th>Blog Detay1</th>
+                        <th>Blog Detay2</th>
+                        <th>Görsel1</th>
+                        <th>Görsel2</th>
+                        <th>Görsel3</th>
+                        <th>Etiketler</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal penceresi - Ayrıntıları Göster -->
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Blog Ayrıntıları</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="blogDetailsContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+<script>
+    $(document).ready(function () {
+        var dataTable = $('#DetailsTable').DataTable({
+            ajax: {
+                url: '/Admin/BlogDetails/GetList',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'name' },
+                { data: 'content' },
+                { data: 'content2' },
+                { data: 'imageUrl' },
+                { data: 'imageUrl2' },
+                { data: 'imageUrl3' },
+                { data: 'tags' },
+                { data: 'dateCreated' },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return `<button type="button" class="btn btn-sm btn-danger" onclick="deleteDetails(${row.id})">Sil</button>
+                                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailsModal" onclick="showDetails('${row.content}', '${row.content2}')">Ayrıntılar</button>`;
+                    }
+                }
+            ]
+        });
+
+
+    });
+    function showDetails(content1, content2) {
+        var blogDetailsContent = `<p><strong>Blog Detay1:</strong></p>
+                                     <p>${content1}</p>
+                                     <p><strong>Blog Detay2:</strong></p>
+                                     <p>${content2}</p>`;
+        $('#blogDetailsContent').html(blogDetailsContent);
+    }
+    function deleteDetails(detailsId) {
+        Swal.fire({
+            title: 'Silmek istediğinize emin misiniz?',
+            text: "Proje Silinecek",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Admin/BlogDetails/DeleteDetails/' + detailsId,
+                    method: 'POST',
+                    success: function () {
+                        Swal.fire(
+                            'Başarılı!',
+                            'Proje silindi.',
+                            'success'
+                        );
+
+
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Hata!',
+                            'Kategori silinemedi.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+
+</script>

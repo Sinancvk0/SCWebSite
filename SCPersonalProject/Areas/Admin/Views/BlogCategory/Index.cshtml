@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <div class="card">
+        <div class="card-header  text-white bg-danger bg-gradient">
+            <span class="fs-4">Yetenek Listesi</span>
+            <a href="#" id="btnEkle" class="btn btn-warning ms-2">Yetenek Ekle</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Guid</th>
+                        <th>Kategori Adı</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody id="skillsTableBody">
+                    <!-- Veriler burada görüntülenecek -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Verilerinizi AJAX ile alın veya başka bir kaynaktan alın
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/BlogCategory/GetList', // Verileri getirmek için uygun URL'yi kullanın
+            success: function (data) {
+                // Verileri aldıktan sonra tabloya ekleyin
+                var tableBody = $('#skillsTableBody');
+                tableBody.empty(); // Önceki verileri temizleyin (eğer varsa)
+
+                // Verileri tabloya ekleme
+                data.forEach(function (item) {
+                    var row = '<tr>' +
+                        '<td>' + item.id + '</td>' +
+                        '<td>' + item.name + '</td>' +
+                        '<td>' + item.dateCreated + '</td>' +
+                        '<td>' +
+                        '<button class="btn btn-sm btn-primary" onclick="editSkill(' + item.id + ')">Düzenle</button>' +
+                        '<button class="btn btn-sm btn-danger" onclick="deleteSkill(' + item.id + ')">Sil</button>' +
+                        '</td>' +
+                        '</tr>';
+                    tableBody.append(row);
+                });
+            },
+            error: function () {
+                // Veri getirme hatası durumunda burada işleyin
+            }
+        });
+
+        // Ekleme alanı
+        $("#btnEkle").click(function () {
+            // Modal ve ekleme işlemlerini burada devam ettirebilirsiniz
+        });
+    });
+
+    // Silme işlemi
+    function deleteSkill(skillId) {
+        // Silme işlemi kodunu burada devam ettirebilirsiniz
+    }
+
+    // Düzenleme işlemi
+    function editSkill(skillId) {
+        // Düzenleme işlemi kodunu burada devam ettirebilirsiniz
+    }
+</script>

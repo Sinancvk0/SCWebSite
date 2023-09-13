@@ -24,8 +24,22 @@
 
             </ul>
         </li>
-        <li><a class="uil-comment-alt-message" asp-controller="Message" asp-action="Index"> Mesajlar</a></li>
-        <li><a class="uil-blogger-alt" asp-controller="Blog" asp-action="Index">Blog</a></li>
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="uil-blogger-alt"></i>
+                <span>Blog</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="true">
+                <li><a asp-controller="BlogCategory" asp-action="Index">Blog Kategorileri</a></li>
+                <li><a asp-controller="BlogDetails" asp-action="Index">Blog Listesi</a></li>
+                <li><a asp-controller="BlogDetails" asp-action="AddDetails">Blog Oluştur</a></li>
+
+
+
+            </ul>
+        </li>
+        <li><a class="uil-comment-alt-message" asp-controller="Message" asp-action="Index">Gelen Mesajlar</a></li>
+      
         <li><a class="uil-sliders-v-alt" asp-controller="Category" asp-action="Index"> Ayarlar</a></li>
         <li><a class="uil-sign-out-alt" asp-controller="Category" asp-action="Index"> Çıkış Yap</a></li>
     </ul>
