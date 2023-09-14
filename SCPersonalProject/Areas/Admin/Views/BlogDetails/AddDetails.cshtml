@@ -16,7 +16,7 @@
                     Yeni bir blog yazısı eklemek için aşağıdaki formu kullanabilirsiniz.
                 </p>
 
-                <form method="post" action="/Admin/BlogDetails/AddDetails">
+                <form method="post" enctype="multipart/form-data" action="/Admin/BlogDetails/AddDetails">
                     <div class="mb-3 row">
                         <label for="category" class="col-md-2 col-form-label">Kategori Seç</label>
                         <div class="col-md-10">
@@ -52,7 +52,7 @@
                     <div class="mb-3 row">
                         <label for="tags" class="col-md-2 col-form-label">Etiketler</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" id="tags" asp-for="Tags">
+                            <input class="form-control" type="text" id="tags" >
                             <small class="text-muted">Etiketleri virgülle ayırın (örn. teknoloji, programlama, web).</small>
                         </div>
                     </div>

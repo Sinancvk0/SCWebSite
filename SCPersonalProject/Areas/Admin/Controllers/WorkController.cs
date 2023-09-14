@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace SCPersonalProject.Areas.Admin.Controllers
 {
-    [Authorize]
+   
     [Area("Admin")]
     public class WorkController : Controller
     {
@@ -47,8 +47,7 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         {
             if (image != null && image.Length > 0)
             {
-                // Dosya yükleme işlemini burada yapabilirsiniz.
-                // Örneğin, dosyayı kaydedebilir veya işleyebilirsiniz.
+                
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
@@ -57,7 +56,7 @@ namespace SCPersonalProject.Areas.Admin.Controllers
                     image.CopyTo(stream);
                 }
 
-                // İşleme tamamlandıktan sonra dosya adını veritabanına kaydedebilirsiniz.
+         
                 work.ImageURL = "/images/" + fileName;
             }
 

@@ -39,7 +39,10 @@
                                 <div class="col-md-6 mb-4">
                                     <img src="@Model.ImageUrl3" alt="Image placeholder" class="img-fluid rounded">
                                 </div>
-                              
+                                <div class="col-md-6 mb-4">
+                                    <img src="@Model.ImageUrl3" alt="Image placeholder" class="img-fluid rounded">
+                                </div>
+
                             </div>
                             <p>@Model.Content2</p>
 
@@ -47,7 +50,7 @@
 
 
                         <div class="pt-5">
-                            <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                            <p>Categories:  <a href="#">@Model.BlogCategoryId</a>, <a href="#">Travel</a>  Tags: <a href="#"></a>, <a href="#">#asia</a></p>
                         </div>
 
 
@@ -61,7 +64,7 @@
                         <div class="sidebar-box search-form-wrap">
                             <form action="#" class="sidebar-search-form">
                                 <span class="bi-search"></span>
-                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                                @*<input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">*@
                             </form>
                         </div>
                         <!-- END sidebar-box -->
@@ -80,48 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- END sidebar-box -->
-                        <div class="sidebar-box">
-                            <h3 class="heading">Popular Posts</h3>
-                            <div class="post-entry-sidebar">
-                                <ul>
-                                    <li>
-                                        <a href="">
-                                            <img src="images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                            <div class="text">
-                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">March 15, 2018 </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <img src="images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                            <div class="text">
-                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">March 15, 2018 </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <img src="images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                            <div class="text">
-                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">March 15, 2018 </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- END sidebar-box -->
+                   
 
                         <div class="sidebar-box">
                             <h3 class="heading">Categories</h3>
