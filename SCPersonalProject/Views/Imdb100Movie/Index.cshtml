@@ -4,4 +4,44 @@
     Layout = "~/Views/Shared/BlogLayout.cshtml";
 }
 
+<div class="section search-result-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="heading">Category: Imdb En iyi 100 Film</div>
+            </div>
+        </div>
+        <div class="row posts-entry">
+            <div class="col-lg-8">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-entry d-flex blog-entry-search-item">
+                        <a href="single.html" class="img-link me-4">
+                            <img src="@item.image" alt="Image" class="img-fluid">
+                        </a>
+                        <div>
+                            <span class="date">@item.year <a href="#">Business</a></span>
+                            <h2><a href="single.html">@item.title</a></h2>
+                            <p>@item.description</p>
+                            <p><a href="single.html" class="btn btn-sm btn-outline-primary">Read More</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
 
+        <!-- Sayfa numaralarını göstermek için -->
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
