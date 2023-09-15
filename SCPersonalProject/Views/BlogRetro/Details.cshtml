@@ -74,12 +74,7 @@
                         <div class="bio-body">
                             <h2>Hannah Anderson</h2>
                             <p><a href="#" class="btn btn-primary btn-sm rounded px-2 py-2">Hakkımda</a></p>
-                            <p class="social">
-                                <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                            </p>
+  
                         </div>
                     </div>
                 </div>
@@ -123,57 +118,6 @@
 
 
 <!-- Start posts-entry -->
-<section class="section posts-entry posts-entry-sm bg-light">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-12 text-uppercase text-black">More Blog Posts</div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="~/blogy/images/img_1_horizontal.jpg" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Thought you loved Python? Wait until you meet Rust</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="~/blogy/images/img_2_horizontal.jpg" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Startup vs corporate: What job suits you best?</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="~/blogy/images/img_3_horizontal.jpg" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">UK sees highest inflation in 30 years</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="~/blogy/images/img_4_horizontal.jpg" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Don’t assume your user data in the cloud is safe</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@await Component.InvokeAsync("BlogDetails")
+
 <!-- End posts-entry -->

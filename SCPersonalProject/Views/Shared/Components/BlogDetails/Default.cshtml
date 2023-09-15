@@ -1,0 +1,35 @@
+﻿@using SC.Models
+@model List<BlogCategory>
+<!-- Start posts-entry -->
+<section class="section posts-entry posts-entry-sm bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-uppercase text-black">More Blog Posts</div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                @foreach (var blog in item.BlogDetaills)
+                {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="blog-entry">
+                            <a href="@blog.Id" class="img-link">
+                                <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
+                            </a>
+                            <span class="date">@blog.DateCreated.ToString("MM/yyyy")</span>
+                            <h2><a href="@blog.Id">@blog.Name</a></h2>
+                            <p>@blog.Content</p>
+                            <p><a href="@blog.Id" class="read-more">Devamı</a></p>
+                        </div>
+                    </div>
+                }
+
+
+
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- End posts-entry -->
