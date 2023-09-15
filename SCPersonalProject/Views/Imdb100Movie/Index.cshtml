@@ -1,0 +1,82 @@
+﻿@model List<Imdb100MovieModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/BlogLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IMDb En İyi 100 Film</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        ul#movie-list {
+            list-style: none;
+            padding: 0;
+        }
+
+            ul#movie-list li {
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                padding: 10px;
+                background-color: #fff;
+            }
+
+                ul#movie-list li img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                ul#movie-list li h2 {
+                    margin-top: 0;
+                }
+
+                ul#movie-list li p {
+                    margin-bottom: 0;
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IMDb En İyi 100 Film</h1>
+    </header>
+    <main>
+        <ul id="movie-list">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <h2>@item.title</h2>
+                    <p>Rank: @item.rank</p>
+                    <img src="@item.image" alt="@item.title" />
+                </li>
+            }
+        </ul>
+    </main>
+</body>
+</html>

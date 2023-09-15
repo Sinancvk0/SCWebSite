@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj" />
     <ProjectReference Include="..\SC.DataLayer\SC.DataLayer.csproj" />
     <ProjectReference Include="..\SC.Models\SC.Models.csproj" />
   </ItemGroup>

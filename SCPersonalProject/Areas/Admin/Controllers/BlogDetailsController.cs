@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Helper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SC.Bussines.Services;
+using SC.DataLayer;
 using SC.Models;
 
 namespace SCPersonalProject.Areas.Admin.Controllers
@@ -11,12 +14,17 @@ namespace SCPersonalProject.Areas.Admin.Controllers
 
         private readonly IBlogDetailsService _blogDetailsService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly AppDbContext _appDbContext;
+        private readonly FileUpload _fileUpload;
 
 
-        public BlogDetailsController(IBlogDetailsService blogDetailsService, IWebHostEnvironment webHostEnvironment)
+        public BlogDetailsController(IBlogDetailsService blogDetailsService, IWebHostEnvironment webHostEnvironment, FileUpload fileUpload, AppDbContext appDbContext)
         {
             _blogDetailsService = blogDetailsService;
             _webHostEnvironment = webHostEnvironment;
+
+            _fileUpload = fileUpload;
+            _appDbContext = appDbContext;
         }
 
         public IActionResult Index()
@@ -47,52 +55,25 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AddDetails()
         {
+    
 
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult AddDetails(BlogDetaills blogDetaills, IFormFile ImageUrl, IFormFile ImageUrl2, IFormFile ImageUrl3)
+        public IActionResult AddDetails(BlogDetaills blogDetaills, IFormFile ImageUrl, IFormFile ImageUrl2, IFormFile ImageUrl3, IFormFile ImageUrl4)
         {
-            if (ImageUrl != null && ImageUrl.Length > 0)
-            {
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName);
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    ImageUrl.CopyTo(stream);
-                }
+            var uploadedImageUrl = FileUpload.UploadFile(ImageUrl);
+            var uploadedImageUrl2 = FileUpload.UploadFile(ImageUrl2);
+            var uploadedImageUrl3 = FileUpload.UploadFile(ImageUrl3);
+            var uploadedImageUrl4 = FileUpload.UploadFile(ImageUrl4);
+            blogDetaills.ImageUrl = uploadedImageUrl;
+            blogDetaills.ImageUrl2 = uploadedImageUrl2;
+            blogDetaills.ImageUrl3 = uploadedImageUrl3;
+            blogDetaills.ImageUrl4 = uploadedImageUrl4;
 
-                blogDetaills.ImageUrl = "/images/" + fileName;
-            }
-
-            if (ImageUrl2 != null && ImageUrl2.Length > 0)
-            {
-                var fileName2 = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl2.FileName);
-                var filePath2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName2);
-
-                using (var stream2 = new FileStream(filePath2, FileMode.Create))
-                {
-                    ImageUrl2.CopyTo(stream2);
-                }
-
-                blogDetaills.ImageUrl2 = "/images/" + fileName2;
-            }
-
-            if (ImageUrl3 != null && ImageUrl3.Length > 0)
-            {
-                var fileName3 = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl3.FileName);
-                var filePath3 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName3);
-
-                using (var stream3 = new FileStream(filePath3, FileMode.Create))
-                {
-                    ImageUrl3.CopyTo(stream3);
-                }
-
-                blogDetaills.ImageUrl3 = "/images/" + fileName3;
-            }
 
             _blogDetailsService.TAdd(blogDetaills);
 

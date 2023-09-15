@@ -12,7 +12,7 @@ namespace SCPersonalProject.ViewComponents.About
        private readonly IAboutService _aboutService;
         private readonly AppDbContext _appDbContext;
 
-        public AboutList(IAboutService aboutService, AppDbContext appDbContext = null)
+        public AboutList(IAboutService aboutService, AppDbContext appDbContext )
         {
             _aboutService = aboutService;
             _appDbContext = appDbContext;

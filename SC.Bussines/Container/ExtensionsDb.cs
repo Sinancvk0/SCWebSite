@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Helper;
+using Microsoft.Extensions.DependencyInjection;
 using SC.Bussines.Content;
 using SC.Bussines.Services;
 using SC.DataLayer.Abstract;
@@ -36,6 +37,9 @@ namespace SC.Bussines.Container
 
             services.AddScoped<IBlogDetailsService, BlogDetailsManager>();
             services.AddScoped<IBlogDetailsDal, EfBlogDetails>();
+
+
+            services.AddSingleton<FileUpload>();
 
 
         }

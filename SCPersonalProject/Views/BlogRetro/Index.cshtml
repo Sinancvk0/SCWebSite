@@ -14,7 +14,7 @@
                         Blog
                     </h3>
                     <p class="subtitle-a">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                     Blog Sayfasına Hoşgeldiniz
                     </p>
                     <div class="line-mf"></div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-4">
                         <div class="card card-blog">
                             <div class="card-img">
-                                <a href="/BlogRetro/Details/@blog.Id"><img src="@blog.ImageUrl" alt="" class="img-fluid"></a>
+                                <a href="/BlogRetro/Details/@blog.Id"><img src="@blog.ImageUrl" style="width: 900px; height: 300px;" alt="" class="img-fluid"></a>
                             </div>
                             <div class="card-body">
                                 <div class="card-category-box">
@@ -38,7 +38,8 @@
                                 </div>
                                 <h3 class="card-title"><a href="/BlogRetro/Details/@blog.Id">@blog.Name</a></h3>
                                 <p class="card-description">
-                                   @blog.Content
+                                    @blog.Content
+
                                 </p>
                             </div>
                             <div class="card-footer">
@@ -49,7 +50,7 @@
                                     </a>
                                 </div>
                                 <div class="post-date">
-                                    <span class="bi bi-clock"></span> @blog.DateCreated
+                                    <span class="bi bi-clock"></span> @blog.DateCreated.ToString("MMM/yyyy")
                                 </div>
                             </div>
                         </div>

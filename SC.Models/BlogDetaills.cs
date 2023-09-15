@@ -14,11 +14,11 @@ namespace SC.Models
         public string? ImageUrl2 { get; set; }
         public string? ImageUrl3 { get; set; }
         public string? Content2 { get; set; }
-
+        public  string? Tag { get; set; }
         public string? ImageUrl4 { get; set; }
         public int BlogCategoryId { get; set; }
         public virtual BlogCategory BlogCategory { get; set; }
 
-        public virtual ICollection<Tag>? Tag { get; set; }
+     
     }
 }

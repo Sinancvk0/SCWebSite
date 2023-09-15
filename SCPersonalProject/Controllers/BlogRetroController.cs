@@ -29,15 +29,22 @@ namespace SCPersonalProject.Controllers
 
         [HttpGet]
         public IActionResult Details(int id)
-        
+
         //Blog detay Idsine göre Blog sayfa detayına gittik
         {
             var blogDetail = _blogDetailsService.TGetById(id);
 
             if (blogDetail == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
+
+            blogDetail = _appDbContext.BlogDetaills
+            .Include(bd => bd.BlogCategory)
+            .FirstOrDefault(bd => bd.Id == id);
+
+         
+
 
             return View(blogDetail);
 

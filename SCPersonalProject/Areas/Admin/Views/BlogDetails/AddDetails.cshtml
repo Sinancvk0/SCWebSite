@@ -1,5 +1,6 @@
 ﻿@using SC.Models
 @model BlogDetaills
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "AddBlogPost";
@@ -20,13 +21,14 @@
                     <div class="mb-3 row">
                         <label for="category" class="col-md-2 col-form-label">Kategori Seç</label>
                         <div class="col-md-10">
-                            <select class="form-select" id="category"  asp-for="BlogCategoryId" required>
+                            <select class="form-select" id="category" asp-for="BlogCategoryId" required>
                                 <option value="" disabled selected>Lütfen bir kategori seçin</option>
                                 <option value="1">Yazılım </option>
                                 <option value="2">Ülkeler</option>
-                         
+
                             </select>
                         </div>
+
                     </div>
                     <div class="mb-3 row">
                         <label for="title" class="col-md-2 col-form-label">Başlık</label>
@@ -34,11 +36,17 @@
                             <input class="form-control" type="text" asp-for="Name" id="title" required>
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="title" class="col-md-2 col-form-label">Etiketler</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" asp-for="Tag" id="tag" required>
+                        </div>
+                    </div>
 
                     <div class="mb-3 row">
                         <label for="content" class="col-md-2 col-form-label">İçerik</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" id="content"asp-for="Content" rows="6" required></textarea>
+                            <textarea class="form-control" id="content" asp-for="Content" rows="6" required></textarea>
                         </div>
                     </div>
 
@@ -49,13 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="tags" class="col-md-2 col-form-label">Etiketler</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="tags" >
-                            <small class="text-muted">Etiketleri virgülle ayırın (örn. teknoloji, programlama, web).</small>
-                        </div>
-                    </div>
+
                     <div class="mb-3 row">
                         <label for="file" class="col-md-2 col-form-label">Ana Görsel</label>
                         <div class="col-md-10">
@@ -75,6 +77,14 @@
                         <label for="file" class="col-md-2 col-form-label">Görsel 3</label>
                         <div class="col-md-10">
                             <input class="form-control" type="file" id="file" asp-for="ImageUrl3">
+                            <small class="text-muted">Dosya yüklemek için bir dosya seçin.</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="file" class="col-md-2 col-form-label">Görsel 4</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="file" id="file" asp-for="ImageUrl4">
                             <small class="text-muted">Dosya yüklemek için bir dosya seçin.</small>
                         </div>
                     </div>

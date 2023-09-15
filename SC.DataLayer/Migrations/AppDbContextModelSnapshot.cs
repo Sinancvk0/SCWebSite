@@ -342,6 +342,9 @@ namespace SC.DataLayer.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Tag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
@@ -577,39 +580,6 @@ namespace SC.DataLayer.Migrations
                     b.ToTable("SocialMedia");
                 });
 
-            modelBuilder.Entity("SC.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlogDetaillsId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogDetaillsId");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("SC.Models.Work", b =>
                 {
                     b.Property<int>("Id")
@@ -715,17 +685,6 @@ namespace SC.DataLayer.Migrations
                     b.Navigation("About");
                 });
 
-            modelBuilder.Entity("SC.Models.Tag", b =>
-                {
-                    b.HasOne("SC.Models.BlogDetaills", "BlogDetaills")
-                        .WithMany("Tag")
-                        .HasForeignKey("BlogDetaillsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogDetaills");
-                });
-
             modelBuilder.Entity("SC.Models.About", b =>
                 {
                     b.Navigation("Skılls");
@@ -734,11 +693,6 @@ namespace SC.DataLayer.Migrations
             modelBuilder.Entity("SC.Models.BlogCategory", b =>
                 {
                     b.Navigation("BlogDetaills");
-                });
-
-            modelBuilder.Entity("SC.Models.BlogDetaills", b =>
-                {
-                    b.Navigation("Tag");
                 });
 #pragma warning restore 612, 618
         }
