@@ -11,10 +11,10 @@
             <div class="col-sm-12">
                 <div class="title-box text-center">
                     <h3 class="title-a">
-                        Blog
+                        Hoşgeldiniz
                     </h3>
                     <p class="subtitle-a">
-                     Blog Sayfasına Hoşgeldiniz
+                        Tüm İçeriklere Buradan Ulaşabilirsiniz
                     </p>
                     <div class="line-mf"></div>
                 </div>
@@ -38,14 +38,19 @@
                                 </div>
                                 <h3 class="card-title"><a href="/BlogRetro/Details/@blog.Id">@blog.Name</a></h3>
                                 <p class="card-description">
-                                    @blog.Content
-
+                                    @{
+                                        var limitedContent = blog.Content.Length > 50 ? blog.Content.Substring(0, 50) + "..." : blog.Content;
+                                    }
+                                    @limitedContent
+                                    @if (blog.Content.Length > 50)
+                                    {
+                                        <a href="/BlogRetro/Details/@blog.Id">Devamını Oku</a>
+                                    }
                                 </p>
                             </div>
                             <div class="card-footer">
                                 <div class="post-author">
                                     <a href="#">
-
                                         <span class="author">Sinan Çıvak</span>
                                     </a>
                                 </div>
@@ -55,11 +60,15 @@
                             </div>
                         </div>
                     </div>
-                }
 
+
+                }
+                                             
             }
 
         </div>
     </div>
 </section>
+
+
 

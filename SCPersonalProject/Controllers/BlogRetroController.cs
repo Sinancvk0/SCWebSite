@@ -49,5 +49,18 @@ namespace SCPersonalProject.Controllers
             return View(blogDetail);
 
         }
+        [HttpGet]  
+        public IActionResult CategoryDetails(int id)
+        {
+       
+
+            var values = _blogService.TGetList();
+
+            var category = _appDbContext.GetBlogCategories.Include(x => x.BlogDetaills).FirstOrDefault(c => c.Id == id);
+
+            return View(category);
+        }
+
+
     }
 }

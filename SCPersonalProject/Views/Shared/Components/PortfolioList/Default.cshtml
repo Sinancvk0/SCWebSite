@@ -22,7 +22,8 @@
                     <div class="work-box">
                         <a href="@item.ImageURL" data-gallery="portfolioGallery" class="portfolio-lightbox">
                             <div class="work-img">
-                                <img style="max-width: 200px; max-height: 150px; object-fit: contain; " src="@item.ImageURL" alt="" class="img-fluid">
+                                <img style="max-width: 100%; max-height: 100%;" src="@item.ImageURL" alt="" class="img-fluid">
+
                             </div>
 
                         </a>
@@ -31,12 +32,12 @@
                                 <div class="col-sm-8">
                                     <h2 class="w-title">@item.Name</h2>
                                     <div class="w-more">
-                                        <span class="w-ctegory">Asp.Net Core</span> / <span class="w-date">@item.DateCreated</span>
+                                        <span class="w-ctegory">Asp.Net Core</span> / <span class="w-date">@item.DateCreated.ToString("yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
+                                        <a target="_blank" href="https://github.com/Sinancvk0?tab=repositories"> <span class="bi bi-plus-circle"></span></a>
                                     </div>
                                 </div>
                             </div>

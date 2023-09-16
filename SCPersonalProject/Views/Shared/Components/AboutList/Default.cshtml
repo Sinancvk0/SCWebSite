@@ -1,5 +1,8 @@
 ﻿@using SC.Models
 @model List<About>
+
+
+
 <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
         <div class="row">
@@ -13,37 +16,31 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-sm-6 col-md-5">
 
-                                        <div class="about-img">
-                                            <img src="@item.ImageURl" class="img-fluid rounded b-shadow-a" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-7">
+                                    <div class="col-sm-6 col-md-12">
                                         <div class="about-info">
-                                            <p><span class="title-s">Name:@item.Name </span> <span></span></p>
-                                            <p><span class="title-s">Profile:@item.Profile </span> <span></span></p>
-                                            <p><span class="title-s">Email:@item.Email </span> <span></span></p>
-                                            <p><span class="title-s">Phone:@item.Phone </span> <span></span></p>
-                                            <p>
-                                                <span class="title-s">
-                                                    CV:<a href="/pdfs/sample.pdf" download>PDF İndir</a>
-                                                </span> <span></span>
-                                            </p>
+                                      <form class="form-control" action="/DownloadCV" method="post">
+                                          <label for="email">Mail Adresi:</label>
+                                          <input type="email" id="email" name="email" required>
+                                          <button class="btn btn-primary" type="submit">CV'yi İndir</button>
+                                          <button class="btn btn-primary" type="submit">CV'yi İndir</button>
+                                      </form>
                                         </div>
                                     </div>
                                 </div>
-                                @foreach (var skill in item.Skılls)
-                                {<div class="skill-mf">
-                                        <p class="title-s">Yetenekler</p>
+
+                                <div class="skill-mf">
+                                    <p class="title-s">Yetenekler</p>
+                                    @foreach (var skill in item.Skılls)
+                                    {
                                         <span></span>@skill.Name <span class="pull-right">@skill.Value%</span>
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" style="width:@skill.Value%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
+                                    }
 
-                                    </div>
+                                </div>
 
-                                }
 
                             </div>
                             <div class="col-md-6">
