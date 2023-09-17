@@ -1,4 +1,4 @@
-﻿@model List<SC.Models.BlogCategory>
+﻿@model List<SC.Models.BlogDetaills>
 @{
     ViewData["Title"] = "CategoryDetails";
     Layout = "~/Views/Shared/BlogLayout.cshtml";
@@ -13,16 +13,15 @@
 			</div>
 			<div class="row posts-entry">
                 <div class="col-lg-8">
-                    @foreach (var item in Model)
-                    {
-                        @foreach (var blog in item.BlogDetaills)
+                
+                        @foreach (var blog in Model)
                         {
                             <div class="blog-entry d-flex blog-entry-search-item">
                                 <a href="single.html" class="img-link me-4">
                                     <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
                                 </a>
                                 <div>
-                                    <span class="date">@item.DateCreated.ToString("MM/yyyy") <a href="#">@item.Name</a></span>
+                                    <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
                                     <h2><a href="single.html">@blog.Name</a></h2>
                                     <p>@blog.Content</p>
                                     <p><a href="single.html" class="btn btn-sm btn-outline-primary">Read More</a></p>
@@ -30,7 +29,7 @@
                             </div>
                         }
 
-                    }
+                
 
 
 

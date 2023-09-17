@@ -56,9 +56,9 @@ namespace SCPersonalProject.Controllers
 
             var values = _blogService.TGetList();
 
-            var category = _appDbContext.GetBlogCategories.Include(x => x.BlogDetaills).FirstOrDefault(c => c.Id == id);
+            var blogsInCategory = _appDbContext.BlogDetaills.Where(blog => blog.BlogCategoryId == id).ToList();
 
-            return View(category);
+            return View(blogsInCategory);
         }
 
 
