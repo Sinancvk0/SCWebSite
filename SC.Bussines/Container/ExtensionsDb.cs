@@ -41,6 +41,9 @@ namespace SC.Bussines.Container
 
             services.AddSingleton<FileUpload>();
 
+          
+
+
 
         }
     }

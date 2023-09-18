@@ -18,17 +18,17 @@
                             </a>
                             <span class="date">@blog.DateCreated.ToString("MM/yyyy")</span>
                             <h2><a href="@blog.Id">@blog.Name</a></h2>
-                            <p>@blog.Content</p>
+                            <p>
+                                @{
+                                    var limitedContent = blog.Content.Length > 50 ? blog.Content.Substring(0, 50) + "..." : blog.Content;
+                                }
+                                @limitedContent
+                            </p>
                             <p><a href="@blog.Id" class="read-more">Devamı</a></p>
                         </div>
                     </div>
                 }
-
-
-
             }
-
-
         </div>
     </div>
 </section>

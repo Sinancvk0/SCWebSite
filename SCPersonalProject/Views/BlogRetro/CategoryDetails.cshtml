@@ -13,39 +13,41 @@
 			</div>
 			<div class="row posts-entry">
                 <div class="col-lg-8">
-                
-                        @foreach (var blog in Model)
-                        {
-                            <div class="blog-entry d-flex blog-entry-search-item">
-                                <a href="single.html" class="img-link me-4">
-                                    <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
-                                </a>
-                                <div>
-                                    <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
-                                    <h2><a href="single.html">@blog.Name</a></h2>
-                                    <p>@blog.Content</p>
-                                    <p><a href="single.html" class="btn btn-sm btn-outline-primary">Read More</a></p>
-                                </div>
+
+                    @foreach (var blog in Model)
+                    {
+                        <div class="blog-entry d-flex blog-entry-search-item">
+                            <a href="single.html" class="img-link me-4">
+                                <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
+                            </a>
+                            <div>
+                                <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
+                                <h2><a href="single.html">@blog.Name</a></h2>
+                                <p>
+                                    @{
+                                        var limitedContent = blog.Content.Length > 150 ? blog.Content.Substring(0, 150) + "..." : blog.Content;
+                                    }
+                                    @limitedContent
+                                </p>
+                                @if (blog.Content.Length > 50)
+                                {
+                                    <a href="/BlogRetro/Details/@blog.Id">Devamını Oku</a>
+                                }
                             </div>
-                        }
-
-                
-
+                        </div>
+                    }
 
 
-
-
-
-                    <div class="row text-start pt-5 border-top">
-                        <div class="col-md-12">
-                            <div class="custom-pagination">
-                                <span>1</span>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <span>...</span>
-                                <a href="#">15</a>
-                            </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="pagination">
+                                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                                    </li>
+                                }
+                            </ul>
                         </div>
                     </div>
 

@@ -1,0 +1,56 @@
+﻿@model List<SCPersonalProject.Models.DateLineModel.Result>  
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/BlogLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarih Tabanlı Olaylar</title>
+    <!-- Bootstrap CSS dosyasını ekleyin -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Tarih Tabanlı Olaylar</h1>
+
+        <!-- Kullanıcıdan tarih bilgisini girebileceği bir form -->
+        <form method="post">
+            <div class="form-group">
+                <label for="eventDate">Tarih:</label>
+                <input type="text" id="eventDate" name="eventDate" class="form-control mb-3" placeholder="Lütfen MÖ-3000 ile 2000 Yılları  arasında bir tarih giriniz" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verileri Getir</button>
+        </form>
+
+        <!-- Olayları listeleyen bir tablo -->
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Tarih</th>
+                    <th>Olay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var result in Model)
+                {
+                    <tr>
+                        <td>@result.Year</td>
+                        <td>@result.Event</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- jQuery ve Bootstrap JavaScript dosyalarını ekleyin -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <!-- JavaScript dosyanızı ekleyin -->
+    <script src="your-script.js"></script>
+</body>
+</html>

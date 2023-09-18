@@ -49,17 +49,26 @@ namespace SCPersonalProject.Controllers
             return View(blogDetail);
 
         }
-        [HttpGet]  
-        public IActionResult CategoryDetails(int id)
+        [HttpGet]
+        public IActionResult CategoryDetails(int id, int page = 1) 
         {
-       
+            int pageSize = 5;
 
-            var values = _blogService.TGetList();
+            var blogsInCategory = _appDbContext.BlogDetaills
+                .Where(blog => blog.BlogCategoryId == id)
+                .ToList();
 
-            var blogsInCategory = _appDbContext.BlogDetaills.Where(blog => blog.BlogCategoryId == id).ToList();
+            var pagedCategory = blogsInCategory
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
-            return View(blogsInCategory);
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)blogsInCategory.Count / pageSize);
+
+            return View(pagedCategory); 
         }
+
 
 
     }
