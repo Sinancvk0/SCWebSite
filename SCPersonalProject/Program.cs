@@ -1,16 +1,14 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using SC.Bussines.Container;
-using SC.Bussines.Content;
-using SC.Bussines.Services;
 using SC.DataLayer;
-using SC.DataLayer.Abstract;
-using SC.DataLayer.EntityFramework;
 using SC.Models;
+using SCPersonalProject.Hubs;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SCPersonalProject
 {
@@ -18,10 +16,7 @@ namespace SCPersonalProject
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
-
-
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -30,26 +25,27 @@ namespace SCPersonalProject
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
 
-
-            //builder.Services.AddMvc(config =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().
-            //    Build();
-
-            //    config.Filters.Add(new AuthorizeFilter(policy));
+            builder.Services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
 
 
-            //});
+            });
 
-            //builder.Services.AddMvc();
-            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-            //{
-            //    x.LoginPath = "/Admin/Login/Index/";
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Admin/Login/Index";
 
-            //});
-      
-          
-          
+            });
+
+         
+
+           
+
+
+            // SignalR servislerini burada yapýlandýrýn
+            builder.Services.AddSignalR();
 
             ExtensionsDb.ContainerDependencies(builder.Services);
 
@@ -66,19 +62,26 @@ namespace SCPersonalProject
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseWebSockets();
 
             app.MapControllerRoute(
-             name: "areas",
-             pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
-         );
+                name: "areas",
+                pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
+            );
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Default}/{action=Index}/{id?}"
             );
 
-            app.Run();
+            // SignalR Hub yolunu ve baðlantýyý yapýlandýrýn
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<VisitorHub>("/visitorhub"); // SignalR Hub yolunu belirtin
+                endpoints.MapControllers(); // Controller endpointleri
+            });
 
+            app.Run();
         }
     }
 }

@@ -17,12 +17,12 @@
                     @foreach (var blog in Model)
                     {
                         <div class="blog-entry d-flex blog-entry-search-item">
-                            <a href="single.html" class="img-link me-4">
+                            <a href="/BlogRetro/Details/@blog.Id" class="img-link me-4">
                                 <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
                             </a>
                             <div>
                                 <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
-                                <h2><a href="single.html">@blog.Name</a></h2>
+                                <h2><a href="/BlogRetro/Details/@blog.Id">@blog.Name</a></h2>
                                 <p>
                                     @{
                                         var limitedContent = blog.Content.Length > 150 ? blog.Content.Substring(0, 150) + "..." : blog.Content;

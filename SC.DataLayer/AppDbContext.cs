@@ -22,7 +22,9 @@ namespace SC.DataLayer
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<BlogCategory> GetBlogCategories { get; set; }
         public virtual DbSet<BlogDetaills> BlogDetaills { get; set; }
-       
+        public virtual DbSet<VisitorCount> VisitorCounts { get; set; }
+
+
 
 
     }

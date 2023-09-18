@@ -75,5 +75,22 @@ namespace SCPersonalProject.Areas.Admin.Controllers
             return Ok();
         
         }
+        [HttpGet]   
+
+        public IActionResult EditWork(int id)
+        {
+            var values=_workService.TGetById(id);
+            return View(values);
+        }
+
+        [HttpPost]
+
+        public IActionResult EditWork(Work work)
+        {
+
+            _workService.TUpdate(work);
+
+            return RedirectToAction("Index");
+        }
     }
 }

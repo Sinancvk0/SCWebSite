@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SC.Bussines.Services;
 using SC.DataLayer;
 
 namespace SCPersonalProject.Controllers
 {
+    [AllowAnonymous]
     public class BlogRetroController : Controller
     {
         private readonly IBlogService _blogService;

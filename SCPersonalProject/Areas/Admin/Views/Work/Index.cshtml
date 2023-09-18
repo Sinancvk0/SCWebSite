@@ -114,7 +114,7 @@
                     data: null,
                     render: function (data, type, row) {
                         return `<a href="#" onclick="deleteWork(${row.id})" class="btn btn-sm btn-danger">Sil</a>
-                                <a href="#" onclick="edit(${data.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
+                                <a href="#" onclick="editWork(${row.id})" class="btn btn-sm btn-primary">Düzenle</a>`;
                     }
                 }
             ]
@@ -157,5 +157,52 @@
         });
     }
         //******************Sİlme foksiyonu Bitiş *****************************
+          //******************Ekle foksiyonu Başla *****************************
+    function editWork(id) {
+        $("#modalTitle").text("Proje Düzenle");
+        $("#btnSave").text("Güncelle").removeClass('btn-primary').addClass('btn-success');
+
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Work/EditWork',
+            data: { id: id },
+            success: function (res) {
+                $('#txtName').val(res.name);
+
+            
+
+                $('#btnSave').off();
+                $('#btnSave').click(function () {
+             
+                    let fileData = new FormData();
+                    fileData.append("id", id); 
+                    fileData.append("name", $('#txtName').val());
+                    fileData.append("image", $('#fileImage')[0].files[0]);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Admin/Work/EditWork',
+                        data: fileData,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+                            $('#modal').modal('hide');
+                            toastr.success("Başarıyla güncellendi");
+                            dataTable.ajax.reload();
+                        },
+                        error: function () {
+                            toastr.error("Güncelleme sırasında bir hata oluştu");
+                        }
+                    });
+                });
+                $("#modal").modal("show");
+            },
+            error: function () {
+                toastr.error("Düzenleme sırasında bir hata oluştu");
+            }
+        });
+    }
+
+ 
 
 </script>

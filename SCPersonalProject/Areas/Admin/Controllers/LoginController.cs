@@ -6,8 +6,9 @@ using SCPersonalProject.Areas.Admin.Models;
 
 namespace SCPersonalProject.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
     [Area("Admin")]
+
+    [AllowAnonymous]
     public class LoginController : Controller
     {
 
