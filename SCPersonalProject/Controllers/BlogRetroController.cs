@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SC.Bussines.Services;
 using SC.DataLayer;
+using SC.Models;
 
 namespace SCPersonalProject.Controllers
 {
@@ -55,6 +56,9 @@ namespace SCPersonalProject.Controllers
         public IActionResult CategoryDetails(int id, int page = 1) 
         {
             int pageSize = 5;
+
+
+           
 
             var blogsInCategory = _appDbContext.BlogDetaills
                 .Where(blog => blog.BlogCategoryId == id)

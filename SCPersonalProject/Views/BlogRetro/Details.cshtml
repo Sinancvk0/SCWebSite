@@ -83,12 +83,15 @@
                 <div class="sidebar-box">
                     <h3 class="heading">Kategoriler</h3>
                     <ul class="categories">
-                        <li><a href="#">Yazılım </a></li>
-                        <li><a href="#">Teklonoji </a></li>
-                        <li><a href="#">Genel Kültür </a></li>
-                        <li><a href="#">IMDB En İyi Filmler  </a></li>
-                        <li><a href="#">Tarihi Olaylar </a></li>
-                        <li><a href="#">Api2 </a></li>
+                        <li>
+                            <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 1 })">Yazılım</a>
+                        </li>
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">E-Fatura</a></li>
+
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 3 })">Genel Kültür</a></li>
+                        <li><a href="/Imdb100Movie/Index">IMDB En İyi 100 Film</a></li>
+                        <li><a href="/DateLine/Index/">Tarihi Olaylar</a></li>
+                        <li><a href="/NewsApi/Index/">Teklonoji Haberleri</a></li>
 
                     </ul>
                 </div>

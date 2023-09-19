@@ -5,137 +5,147 @@
 }
 
 <div class="section search-result-wrap">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="heading">Category: Business</div>
-				</div>
-			</div>
-			<div class="row posts-entry">
-                <div class="col-lg-8">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+               
+                    <div class="heading">Kategoriye Ait Bloglar Aşağıdadır. </div>
 
-                    @foreach (var blog in Model)
-                    {
-                        <div class="blog-entry d-flex blog-entry-search-item">
-                            <a href="/BlogRetro/Details/@blog.Id" class="img-link me-4">
-                                <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
-                            </a>
-                            <div>
-                                <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
-                                <h2><a href="/BlogRetro/Details/@blog.Id">@blog.Name</a></h2>
-                                <p>
-                                    @{
-                                        var limitedContent = blog.Content.Length > 150 ? blog.Content.Substring(0, 150) + "..." : blog.Content;
-                                    }
-                                    @limitedContent
-                                </p>
-                                @if (blog.Content.Length > 50)
-                                {
-                                    <a href="/BlogRetro/Details/@blog.Id">Devamını Oku</a>
+       
+
+
+            </div>
+        </div>
+        <div class="row posts-entry">
+            <div class="col-lg-8">
+
+                @foreach (var blog in Model)
+                {
+                    <div class="blog-entry d-flex blog-entry-search-item">
+                        <a href="/BlogRetro/Details/@blog.Id" class="img-link me-4">
+                            <img src="@blog.ImageUrl" alt="Image" class="img-fluid">
+                        </a>
+                        <div>
+                            <span class="date">@blog.DateCreated.ToString("MM/yyyy") <a href="#"></a></span>
+                            <h2><a href="/BlogRetro/Details/@blog.Id">@blog.Name</a></h2>
+                            <p>
+                                @{
+                                    var limitedContent = blog.Content.Length > 150 ? blog.Content.Substring(0, 150) + "..." : blog.Content;
                                 }
-                            </div>
-                        </div>
-                    }
-
-
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="pagination">
-                                @for (int i = 1; i <= ViewBag.TotalPages; i++)
-                                {
-                                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                                        <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
-                                    </li>
-                                }
-                            </ul>
+                                @limitedContent
+                            </p>
+                            @if (blog.Content.Length > 50)
+                            {
+                                <a href="/BlogRetro/Details/@blog.Id">Devamını Oku</a>
+                            }
                         </div>
                     </div>
+                }
 
+
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
 
-				<div class="col-lg-4 sidebar">
-					
-					<div class="sidebar-box search-form-wrap mb-4">
-						<form action="#" class="sidebar-search-form">
-							<span class="bi-search"></span>
-							<input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-						</form>
-					</div>
-					<!-- END sidebar-box -->
-					<div class="sidebar-box">
-						<h3 class="heading">Popular Posts</h3>
-						<div class="post-entry-sidebar">
-							<ul>
-								<li>
-									<a href="">
-										<img src="~/blogy/images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="">
-										<img src="~/blogy/images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="">
-										<img src="~/blogy/images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<!-- END sidebar-box -->
+            </div>
 
-					<div class="sidebar-box">
-						<h3 class="heading">Categories</h3>
-						<ul class="categories">
-							<li><a href="#">Food <span>(12)</span></a></li>
-							<li><a href="#">Travel <span>(22)</span></a></li>
-							<li><a href="#">Lifestyle <span>(37)</span></a></li>
-							<li><a href="#">Business <span>(42)</span></a></li>
-							<li><a href="#">Adventure <span>(14)</span></a></li>
-						</ul>
-					</div>
-					<!-- END sidebar-box -->
+            <div class="col-lg-4 sidebar">
 
-					<div class="sidebar-box">
-						<h3 class="heading">Tags</h3>
-						<ul class="tags">
-							<li><a href="#">Travel</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Food</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Business</a></li>
-							<li><a href="#">Freelancing</a></li>
-							<li><a href="#">Travel</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Food</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Business</a></li>
-							<li><a href="#">Freelancing</a></li>
-						</ul>
-					</div>
+                <div class="sidebar-box search-form-wrap mb-4">
+                    <form action="#" class="sidebar-search-form">
+                        <span class="bi-search"></span>
+                        <input type="text" class="form-control" id="s" placeholder="Arama">
+                    </form>
+                </div>
+                <!-- END sidebar-box -->
+                <div class="sidebar-box">
+                    <h3 class="heading">Diğer Yazılar</h3>
+                    <div class="post-entry-sidebar">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <img src="~/blogy/images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <div class="text">
+                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <div class="post-meta">
+                                            <span class="mr-2">March 15, 2018 </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="~/blogy/images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <div class="text">
+                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <div class="post-meta">
+                                            <span class="mr-2">March 15, 2018 </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="~/blogy/images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <div class="text">
+                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <div class="post-meta">
+                                            <span class="mr-2">March 15, 2018 </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- END sidebar-box -->
 
-				</div>
-			</div>
-		</div>
-	</div>
+                <div class="sidebar-box">
+                    <h3 class="heading">Kategoriler</h3>
+                    <ul class="categories">
+                        <li>
+                            <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 1 })">Yazılım</a>
+                        </li>
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">E-Fatura</a></li>
+
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 3 })">Genel Kültür</a></li>
+                        <li><a href="/Imdb100Movie/Index">IMDB En İyi 100 Film</a></li>
+                        <li><a href="/DateLine/Index/">Tarihi Olaylar</a></li>
+                        <li><a href="/NewsApi/Index/">Teklonoji Haberleri</a></li>
+
+                    </ul>
+                </div>
+                <!-- END sidebar-box -->
+
+                <div class="sidebar-box">
+                    <h3 class="heading">Tags</h3>
+                    <ul class="tags">
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Freelancing</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Freelancing</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
