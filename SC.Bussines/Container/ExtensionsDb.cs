@@ -1,5 +1,6 @@
 ﻿using Helper;
 using Microsoft.Extensions.DependencyInjection;
+using NewsAPI;
 using SC.Bussines.Content;
 using SC.Bussines.Services;
 using SC.DataLayer.Abstract;
@@ -41,7 +42,10 @@ namespace SC.Bussines.Container
 
             services.AddSingleton<FileUpload>();
 
-          
+            services.AddSingleton<NewsApiClient>(provider => new NewsApiClient("8f6a5cbce9c24e7b991efbb5c20285db"));
+
+
+
 
 
 

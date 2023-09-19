@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SC.Bussines.Container;
 using SC.DataLayer;
 using SC.Models;
-using SCPersonalProject.Hubs;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -24,6 +24,8 @@ namespace SCPersonalProject
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+
+       
 
             builder.Services.AddMvc(config =>
             {
@@ -45,7 +47,7 @@ namespace SCPersonalProject
 
 
             // SignalR servislerini burada yapýlandýrýn
-            builder.Services.AddSignalR();
+
 
             ExtensionsDb.ContainerDependencies(builder.Services);
 
@@ -73,14 +75,6 @@ namespace SCPersonalProject
                 name: "default",
                 pattern: "{controller=Default}/{action=Index}/{id?}"
             );
-
-            // SignalR Hub yolunu ve baðlantýyý yapýlandýrýn
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub<VisitorHub>("/visitorhub"); // SignalR Hub yolunu belirtin
-                endpoints.MapControllers(); // Controller endpointleri
-            });
-
             app.Run();
         }
     }

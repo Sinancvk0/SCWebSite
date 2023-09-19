@@ -9,7 +9,7 @@ namespace SC.Models
     public class VisitorCount
     {
         public int Id { get; set; }
-        public int  Visitor { get; set; }
+        public string? IpAdress { get; set; }
 
         public DateTime DataDate { get; set; }
 

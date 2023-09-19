@@ -1,0 +1,21 @@
+﻿@model List<NewsAPI.Models.Article>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/BlogLayout.cshtml";
+}
+
+
+
+<h1>Apple News</h1>
+
+<ul>
+    @foreach (var article in Model)
+    {
+        <li>
+            <h3>@article.Title</h3>
+            <p>@article.Description</p>
+            <p><a href="@article.Url">Haberin Tamamını Oku</a></p>
+        </li>
+    }
+</ul>
+

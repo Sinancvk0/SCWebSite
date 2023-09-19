@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SCPersonalProject.Models;
 using System;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace SCPersonalProject.Controllers
 {
+    [AllowAnonymous]
+
     public class DateLineController : Controller
     {
         public async Task<IActionResult> Index(string eventDate)
