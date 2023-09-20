@@ -66,47 +66,7 @@
                         <input type="text" class="form-control" id="s" placeholder="Arama">
                     </form>
                 </div>
-                <!-- END sidebar-box -->
-                <div class="sidebar-box">
-                    <h3 class="heading">Diğer Yazılar</h3>
-                    <div class="post-entry-sidebar">
-                        <ul>
-                            <li>
-                                <a href="">
-                                    <img src="~/blogy/images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="~/blogy/images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="~/blogy/images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          @await Component.InvokeAsync("BlogRandom")
                 <!-- END sidebar-box -->
 
                 <div class="sidebar-box">
@@ -115,10 +75,10 @@
                         <li>
                             <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 1 })">Yazılım</a>
                         </li>
-                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">E-Fatura</a></li>
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">Kişisel Gelişim</a></li>
 
                         <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 3 })">Genel Kültür</a></li>
-                        <li><a href="/Imdb100Movie/Index">IMDB En İyi 100 Film</a></li>
+                        <li><a href="/Movie/Index">Popüler Filmler</a></li>
                         <li><a href="/DateLine/Index/">Tarihi Olaylar</a></li>
                         <li><a href="/NewsApi/Index/">Teklonoji Haberleri</a></li>
 
@@ -130,17 +90,20 @@
                     <h3 class="heading">Tags</h3>
                     <ul class="tags">
                         <li><a href="#">Travel</a></li>
-                        <li><a href="#">Adventure</a></li>
-                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Yazılım</a></li>
+                        <li><a href="#">Genel Kültür</a></li>
+                        <li><a href="#">C#</a></li>
+                        <li><a href="#">Asp.Net Core</a></li>
+                        <li><a href="#">SQL</a></li>
+                        <li><a href="#">Kişisel Gelişim</a></li>
+                        <li><a href="#">İş Dünyası</a></li>
+                        <li><a href="#">Yazılım Dünyası</a></li>
                         <li><a href="#">Lifestyle</a></li>
                         <li><a href="#">Business</a></li>
                         <li><a href="#">Freelancing</a></li>
-                        <li><a href="#">Travel</a></li>
-                        <li><a href="#">Adventure</a></li>
-                        <li><a href="#">Food</a></li>
-                        <li><a href="#">Lifestyle</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Freelancing</a></li>
+                        <li><a href="#">Javascript</a></li>
+                        <li><a href="#">Yapay Zeka</a></li>
+                        <li><a href="#">İnternet</a></li>
                     </ul>
                 </div>
 

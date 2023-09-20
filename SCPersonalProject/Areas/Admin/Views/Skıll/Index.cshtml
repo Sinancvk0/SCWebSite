@@ -166,50 +166,28 @@
         //******************Sİlme foksiyonu Bitiş *****************************
                //******************Ekle foksiyonu Başlangıç *****************************
 
-
     function editSkill(skillId) {
-        
         $.ajax({
+            type: 'GET',
             url: '/Admin/Skıll/UpdateSkill/' + skillId,
-            method: 'GET',
-            success: function (data) {
-
-                $("#modalTitle").text("Yetenek Düzenle");
-                $("#btnSave").text("Güncelle").removeClass('btn-primary').addClass('btn-success');
-                $("#txtName").val(data.name);
-                $("#txtValue").val(data.value);
-                $("#modal").modal('show');
-
-             
-                $("#btnSave").off().click(function () {
-              
-                    let updatedData = {
-                        id: skillId,
-                        name: $("#txtName").val(),
-                        value: $("#txtValue").val()
-                    };
-
-           
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Admin/Skıll/UpdateSkill',
-                        data: updatedData,
-                        success: function (res) {
-                    
-                            $("#modal").modal('hide');
-                            $("#txtName").val("");
-                            $("#txtValue").val("");
-                            fetchSkills();
-                        }
-                    });
-                });
-            },
-            error: function () {
-      
-                console.error("Error fetching skill data for editing.");
+            success: function (res) {
+                if (res.error) {
+                    console.log(res.error);
+                    // Hata mesajını göster
+                } else {
+                    // Verileri modal'e yükle
+                    $("#modalTitle").text("Yetenek Düzenle");
+                    $("#btnSave").text("Güncelle").removeClass('btn-primary').addClass('btn-success');
+                    $("#txtName").val(res.name);
+                    $("#txtValue").val(res.value);
+                    $("#hdnSkillId").val(res.id);
+                    $("#modal").modal('show');
+                }
             }
         });
     }
+
+  
 
 
 

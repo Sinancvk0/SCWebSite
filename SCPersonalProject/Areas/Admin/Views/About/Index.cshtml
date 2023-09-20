@@ -195,4 +195,72 @@
             }
         });
     }
+
+    function editAbout(aboutId) {
+        $.ajax({
+            url: '/Admin/About/EditAbout/' + aboutId, // Controller'daki düzenleme işlemi için uygun URL'yi vermelisiniz
+            method: 'GET', // Düzenleme işlemi için GET veya POST, kullanılan metoda bağlı olarak değişebilir.
+            success: function (data) {
+                // Düzenleme formunu doldurmak için dönen veriyi kullanabilirsiniz.
+                // Örneğin, veriyi alın ve düzenleme formuna yerleştirin.
+                $("#modalTitle").text("Hakkında Düzenleme");
+                $("#btnSave").text("Güncelle").removeClass('btn-primary').addClass('btn-success');
+                $("#txtName").val(data.name);
+                $("#txtProfile").val(data.profile);
+                $("#txtDescription").val(data.description);
+                $("#txtPhone").val(data.phone);
+                $("#txtEmail").val(data.email);
+                // Diğer gerekli alanları da doldurabilirsiniz.
+
+                // Düzenleme işlemi için bir kaydet düğmesi tıklama olayı tanımlayabilirsiniz.
+                $("#btnSave").off().click(function () {
+                    // Güncelleme işlemini yapmak için veriyi alın ve ilgili controller aksiyonuna gönderin.
+                    let updatedData = {
+                        id: aboutId,
+                        name: $("#txtName").val(),
+                        profile: $("#txtProfile").val(),
+                        desciription: $("#txtDescription").val(),
+                        phone: $("#txtPhone").val(),
+                        email: $("#txtEmail").val(),
+                        // Diğer gerekli alanları da ekleyin.
+                    };
+
+                    $.ajax({
+                        type: 'POST', // Güncelleme işlemi için uygun HTTP yöntemini seçin (genellikle POST).
+                        url: '/Admin/About/EditAbout', // Controller'daki güncelleme işlemi için uygun URL'yi vermelisiniz.
+                        data: updatedData,
+                        success: function (res) {
+                            $("#modal").modal('hide');
+                            $("#txtName").val("");
+                            $("#txtProfile").val("");
+                            $("#txtDescription").val("");
+                            $("#txtPhone").val("");
+                            $("#txtEmail").val("");
+                            // Diğer alanları temizleyin veya güncelleyin.
+                            dataTable.ajax.reload();
+                        },
+                        error: function (error) {
+                            Swal.fire(
+                                'Hata!',
+                                'Veri güncelleme işlemi başarısız oldu. Hata: ' + error.statusText,
+                                'error'
+                            );
+                        }
+                    });
+                });
+
+                // Düzenleme modalını gösterin.
+                $("#modal").modal('show');
+            },
+            error: function (error) {
+                Swal.fire(
+                    'Hata!',
+                    'Veri getirme işlemi başarısız oldu. Hata: ' + error.statusText,
+                    'error'
+                );
+            }
+        });
+    }
+
+
 </script>

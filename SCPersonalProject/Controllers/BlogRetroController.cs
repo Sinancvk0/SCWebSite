@@ -56,10 +56,7 @@ namespace SCPersonalProject.Controllers
         public IActionResult CategoryDetails(int id, int page = 1) 
         {
             int pageSize = 5;
-
-
-           
-
+            
             var blogsInCategory = _appDbContext.BlogDetaills
                 .Where(blog => blog.BlogCategoryId == id)
                 .ToList();

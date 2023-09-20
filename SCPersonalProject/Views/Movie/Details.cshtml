@@ -1,27 +1,27 @@
-﻿@model SC.Models.BlogDetaills
+﻿@model MovieDetailsModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/BlogLayout.cshtml";
 }
 
-
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('@Model.ImageUrl'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('https://image.tmdb.org/t/p/w500/@Model.backdrop_path'); background-position: center; background-repeat: no-repeat; background-size: cover;">
 
     <div class="container">
         <div class="row same-height justify-content-center">
             <div class="col-md-6">
                 <div class="post-entry text-center">
-                    <h1 class="mb-4">@Model.Name</h1>
+                    <h1 class="mb-4">@Model.title</h1>
                     <div class="post-meta align-items-center text-center">
                         <figure class="author-figure mb-0 me-3 d-inline-block"></figure>
-                        <span class="d-inline-block mt-1">By Sinan Çıvak</span>
-                        <span>&nbsp;-&nbsp; @Model.DateCreated.ToString("MMMM/yyyy")</span>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <section class="section">
     <div class="container">
@@ -31,26 +31,36 @@
             <div class="col-md-12 col-lg-8 main-content">
 
                 <div class="post-content-body">
-                    <p>@Model.Content</p>
+
+                    @if (Model != null)
+                    {
+                        <p>Popülerlik:@Model.popularity</p>
+                        <p>orjinal Dili:@Model.original_language</p>
+                        <p>Yayın Tarihi:@Model.release_date</p>
+                        <p>Puan: @Model.vote_average</p>
+                        <p>Oylama Sayısı: @Model.vote_count</p>
+                        <p>Konusu:@Model.overview</p>
+                    }
+
                     <div class="row my-4">
                         <div class="col-md-12 mb-4">
-                            <img src="@Model.ImageUrl2" style="width: 1800px; height: 500px;" alt="Image placeholder" class="img-fluid rounded">
+                            @if (Model != null && Model.poster_path != null)
+                            {
+                                <img src="https://image.tmdb.org/t/p/w500/@Model.poster_path" alt="Image placeholder" class="img-fluid rounded">
+                            }
+
                         </div>
-                        <div class="col-md-6 mb-4">
-                            <img src="@Model.ImageUrl3" alt="Image placeholder"  style="width: 900px; height: 300px;" class="img-fluid rounded">
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <img src="@Model.ImageUrl4" alt="Image placeholder"  style="width: 900px; height: 300px;" class="img-fluid rounded">
-                        </div>
+
+
                     </div>
 
-                    <p>@Model.Content2</p>
+
 
                 </div>
 
 
                 <div class="pt-5">
-                    <p>Categories-Kategori:  <a href="#">@Model.BlogCategory.Name</a>  Tags-Etiketler: <a href="#"></a> @Model.Tag</p>
+
                 </div>
 
 
@@ -63,8 +73,6 @@
             <div class="col-md-12 col-lg-4 sidebar">
                 <div class="sidebar-box search-form-wrap">
                     <form action="#" class="sidebar-search-form">
-                     
-         
                     </form>
                 </div>
                 <!-- END sidebar-box -->
@@ -74,7 +82,7 @@
                         <div class="bio-body">
                             <h2>Sinan Çıvak</h2>
                             <p><a href="/Default/Index/" class="btn btn-primary btn-sm rounded px-2 py-2">Hakkımda</a></p>
-  
+
                         </div>
                     </div>
                 </div>
@@ -86,7 +94,7 @@
                         <li>
                             <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 1 })">Yazılım</a>
                         </li>
-                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">Kişisel Gelişim</a></li>
+                        <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 2 })">E-Fatura</a></li>
 
                         <li>  <a href="@Url.Action("CategoryDetails", "BlogRetro", new { id = 3 })">Genel Kültür</a></li>
                         <li><a href="/Movie/Index">Popüler Filmler</a></li>
@@ -98,23 +106,14 @@
                 <!-- END sidebar-box -->
 
                 <div class="sidebar-box">
-                    <h3 class="heading">Tags</h3>
-                    <ul class="tags">
-                        <li><a href="#">Travel</a></li>
-                        <li><a href="#">Yazılım</a></li>
-                        <li><a href="#">Genel Kültür</a></li>
-                        <li><a href="#">C#</a></li>
-                        <li><a href="#">Asp.Net Core</a></li>
-                        <li><a href="#">SQL</a></li>
-                        <li><a href="#">Kişisel Gelişim</a></li>
-                        <li><a href="#">İş Dünyası</a></li>
-                        <li><a href="#">Yazılım Dünyası</a></li>
-                        <li><a href="#">Lifestyle</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Freelancing</a></li>
-                        <li><a href="#">Javascript</a></li>
-                        <li><a href="#">Yapay Zeka</a></li>
-                        <li><a href="#">İnternet</a></li>
+                    <h3 class="heading">Etikeler</h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Aksiyon</a></li>
+                        <li class="list-inline-item"><a href="#">Macera</a></li>
+                        <li class="list-inline-item"><a href="#">Komedi</a></li>
+                        <li class="list-inline-item"><a href="#">Drama</a></li>
+                        <li class="list-inline-item"><a href="#">Bilim Kurgu</a></li>
+                        <li class="list-inline-item"><a href="#">Korku</a></li>
                     </ul>
                 </div>
             </div>
@@ -123,9 +122,7 @@
         </div>
     </div>
 </section>
-
-
 <!-- Start posts-entry -->
-@await Component.InvokeAsync("BlogDetails")
+
 
 <!-- End posts-entry -->

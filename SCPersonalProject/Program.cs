@@ -41,13 +41,12 @@ namespace SCPersonalProject
 
             });
 
-         
 
-           
+           builder.Services.AddHttpClient();
 
 
-            // SignalR servislerini burada yapýlandýrýn
 
+                        
 
             ExtensionsDb.ContainerDependencies(builder.Services);
 

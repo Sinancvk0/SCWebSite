@@ -36,13 +36,12 @@ namespace SCPersonalProject.Areas.Admin.Controllers
         }
         [HttpPost]
 
-        public IActionResult AddAbout(About about,IFormFile image)
+        public IActionResult AddAbout(About about, IFormFile image)
         {
 
             if (image != null && image.Length > 0)
             {
-                // Dosya yükleme işlemini burada yapabilirsiniz.
-                // Örneğin, dosyayı kaydedebilir veya işleyebilirsiniz.
+
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
 
@@ -51,7 +50,7 @@ namespace SCPersonalProject.Areas.Admin.Controllers
                     image.CopyTo(stream);
                 }
 
-                // İşleme tamamlandıktan sonra dosya adını veritabanına kaydedebilirsiniz.
+
                 about.ImageURl = "/images/" + fileName;
             }
             _aboutService.TAdd(about);
@@ -67,6 +66,27 @@ namespace SCPersonalProject.Areas.Admin.Controllers
 
             _aboutService.TDelete(values);
 
+            return Ok();
+        }
+
+        [HttpGet]
+
+        public IActionResult EditAbout(int id)
+        {
+            var value = _aboutService.TGetById(id);
+
+            return View(value);
+
+
+        }
+
+
+        [HttpPost]
+
+        public IActionResult EditAbout(About about)
+        {
+            _aboutService.TUpdate(about);
+            
             return Ok();
         }
 
