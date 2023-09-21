@@ -5,23 +5,23 @@
     Layout = "~/Views/Shared/BlogLayout.cshtml";
 }
 
+
+@await Component.InvokeAsync("SliderList")
 <section id="blog" class="blog-mf sect-pt4 route">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="title-box text-center">
                     <h3 class="title-a">
-                        Hoşgeldiniz
-                    </h3>
-                    <p class="subtitle-a">
                         Tüm İçeriklere Buradan Ulaşabilirsiniz
-                    </p>
+                    </h3>
+                    
                     <div class="line-mf"></div>
                 </div>
             </div>
         </div>
 
-      
+
 
         <div class="row">
             @foreach (var item in Model)

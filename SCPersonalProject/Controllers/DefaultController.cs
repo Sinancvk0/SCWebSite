@@ -47,10 +47,10 @@ namespace SCPersonalProject.Controllers
         [HttpPost]
         public IActionResult SendMessage(Message m)
         {
-        
+
             m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                m.isActive = true;
-                _messageService.TAdd(m);
+            m.isActive = true;
+            _messageService.TAdd(m);
             return Ok();
         }
     }
