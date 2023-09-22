@@ -10,8 +10,8 @@ namespace SC.Models
     {
 
       
-        public string Desciription { get; set; }
-        public string ImageURL { get; set; }
+        public string? Desciription { get; set; }
+        public string? ImageURL { get; set; }
 
     }
 }
