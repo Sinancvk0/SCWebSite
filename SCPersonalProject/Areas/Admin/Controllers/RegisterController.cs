@@ -8,7 +8,7 @@ namespace SCPersonalProject.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    [AllowAnonymous]
+
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
