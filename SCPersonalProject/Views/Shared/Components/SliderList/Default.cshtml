@@ -10,7 +10,7 @@
                         <div class="featured-img" style="background-image: url('@item.ImageUrl');"></div>
 
                         <div class="text">
-                            <span class="date">@item.DateCreated.ToString("MM/yyyy")</span>
+                            <span class="date">@item.DateCreated.ToString("dd.MMM.yyy")</span>
                             <h2>@item.Name</h2>
                         </div>
                     </a>
@@ -23,7 +23,7 @@
                         <div class="featured-img" style="background-image: url('@item.ImageUrl');"></div>
 
                         <div class="text">
-                            <span class="date">@item.DateCreated.ToString("MM/yyyy")</span>
+                            <span class="date">@item.DateCreated.ToString("dd.MMM.yyy")</span>
                             <h2>@item.Name</h2>
                         </div>
                     </a>
@@ -40,7 +40,7 @@
                         <div class="featured-img" style="background-image: url('@item.ImageUrl');"></div>
 
                         <div class="text">
-                            <span class="date">@item.DateCreated.ToString("MM/yyyy")</span>
+                            <span class="date">@item.DateCreated.ToString("dd.MMM.yyy")</span>
                             <h2>@item.Name</h2>
                         </div>
                     </a>
@@ -50,20 +50,20 @@
             <div class="col-md-4">
                 <a href="single.html" class="h-entry mb-30 v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('/blogy/images/img_3_horizontal.jpg');"></div>
+                    <div class="featured-img" style="background-image: url('/blogy/images/cinema.jpg');"></div>
 
                     <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Startup vs corporate: What job suits you best?</h2>
+                        <span class="date">@DateTime.Now.ToString("dd.MMM.yyy")</span>
+                        <h2>Popüler Filmler</h2>
                     </div>
                 </a>
                 <a href="single.html" class="h-entry v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('~/blogy/images/img_4_horizontal.jpg');"></div>
+                    <div class="featured-img" style="background-image: url('/blogy/images/news.jpg');"></div>
 
                     <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Thought you loved Python? Wait until you meet Rust</h2>
+                        <span class="date">@DateTime.Now.ToString("dd.MMM.yyy")</span>
+                        <h2>Teklonoji Haberleri</h2>
                     </div>
                 </a>
             </div>
