@@ -10,7 +10,7 @@ namespace SC.Models
     {
 
         public string Mail { get; set; }
-        public string Content { get; set; }
+        public string? Content { get; set; }
         
     }
 }

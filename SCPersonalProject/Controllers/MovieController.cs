@@ -5,9 +5,11 @@ using SCPersonalProject.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SCPersonalProject.Controllers
 {
+    [AllowAnonymous]
     public class MovieController : Controller
     {
 
@@ -53,8 +55,7 @@ namespace SCPersonalProject.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            try
-            {
+         
                 var client = new RestClient("https://api.themoviedb.org/3");
                 var request = new RestRequest($"/movie/{id}");
                 request.Method = Method.Get;
@@ -73,12 +74,8 @@ namespace SCPersonalProject.Controllers
                 {
                     return View("Error");
                 }
-            }
-            catch (Exception ex)
-            {
-                return View("Error");
-
-            }
+           
+           
         }
 
 

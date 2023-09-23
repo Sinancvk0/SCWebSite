@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SC.Bussines.Services;
 using SC.Models;
-using System.Drawing.Text;
 
 namespace SCPersonalProject.Controllers
 {
@@ -38,20 +37,22 @@ namespace SCPersonalProject.Controllers
             return PartialView();
         }
 
-        [HttpGet]
-        public IActionResult SendMessage()
+        [HttpGet] public IActionResult SendMessage()
         {
 
-            return Ok();
+            return View();
+
         }
-        [HttpPost]
+
+        [HttpPost ]
         public IActionResult SendMessage(Message m)
         {
-
-            m.DateCreated = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            m.DateCreated = Convert.ToDateTime( DateTime.Now.ToShortDateString());
             m.isActive = true;
             _messageService.TAdd(m);
             return Ok();
         }
+
+     
     }
 }
